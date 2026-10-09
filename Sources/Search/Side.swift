@@ -828,7 +828,7 @@ struct Quiet: View {
                 Image(systemName: icon)
                     .font(.system(size: 10, weight: .medium))
                     .frame(width: 15)
-                Text(title)
+                Text(title.said)
                     .font(.system(size: 12.5))
                 Spacer(minLength: 0)
             }
@@ -936,7 +936,7 @@ struct Door: View {
         }
         .buttonStyle(.plain)
         .onHover { hovering = $0 }
-        .help(help)
+        .help(help.said)
         .animation(Motion.quick, value: hovering)
         .animation(Motion.quick, value: on)
     }

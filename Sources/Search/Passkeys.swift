@@ -194,7 +194,7 @@ final class Passkeys: NSObject {
                 .filter { allowed.isEmpty || allowed.contains($0.credentialID) }
                 .prefix(8)
                 .map { found in
-                    Offered(id: found.credentialID, name: found.name.isEmpty ? "Passkey" : String(found.name.prefix(200)),
+                    Offered(id: found.credentialID, name: found.name.isEmpty ? "Passkey".saidNow : String(found.name.prefix(200)),
                             provider: found.providerName.isEmpty ? nil : found.providerName)
                 }
             self.settle(key, token: token, Array(offered))

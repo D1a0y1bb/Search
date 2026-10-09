@@ -66,6 +66,14 @@ final class Preferences: ObservableObject {
             look.apply()
         }
     }
+    /// The language the interface is drawn in. The choice is written down for
+    /// the next launch, which is when it actually takes hold (see Tongue).
+    @Published var tongue: Tongue {
+        didSet {
+            store.set(tongue.rawValue, forKey: "app.language")
+            tongue.write()
+        }
+    }
     /// Titles down a side instead of across the top.
     @Published var sidebar: Bool {
         didSet { store.set(sidebar, forKey: "sidebar") }
@@ -356,6 +364,9 @@ final class Preferences: ObservableObject {
     }
 
     init() {
+        // What language this process was opened in, before anything can change
+        // the answer out from under it.
+        Tongue.remember()
         navigationLeft = store.bool(forKey: "toolbar.left")
         // Carried over from when there were four ways of holding the browser
         // and this was one of them.
@@ -370,6 +381,7 @@ final class Preferences: ObservableObject {
         }
         let chosen = store.string(forKey: "look").flatMap(Look.init) ?? .system
         look = chosen
+        tongue = store.string(forKey: "app.language").flatMap(Tongue.init) ?? .system
         // Before the first window, and not deferred: the window that is about
         // to be made should be made in the right appearance. Through `shared`
         // rather than `NSApp`: on macOS 14 SwiftUI builds this before it has

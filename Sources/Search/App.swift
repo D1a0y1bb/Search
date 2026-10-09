@@ -52,7 +52,7 @@ struct SearchApp: App {
                     .shortcut("file.newTab")
                 Button("New Private Tab") { browser.newShyTab() }
                     .shortcut("file.newPrivateTab")
-                Button(browser.reopenTitle) { browser.reopen() }
+                Button(browser.reopenTitleSaid) { browser.reopen() }
                     .shortcut("file.reopen")
                     .disabled(browser.ghosts.isEmpty && Browsers.lastClosedAt == nil)
                 Divider()
@@ -105,7 +105,7 @@ struct SearchApp: App {
                     set: { browser.prefs.glyph = $0 }
                 )) {
                     ForEach(Glyph.allCases) { glyph in
-                        Text(glyph.title).tag(glyph)
+                        Text(glyph.title.said).tag(glyph)
                     }
                 }
                 Divider()
@@ -714,7 +714,7 @@ struct ContentView: View {
     private var announcement: some View {
         if let text = browser.announcement {
             HStack(spacing: 8) {
-                Text(text)
+                Text(text.said)
                     .foregroundStyle(Palette.ink)
                 // A file just saved: the line shows it in the Finder.
                 if browser.announcedFile != nil {
@@ -737,6 +737,17 @@ struct ContentView: View {
         }
     }
 
+    /// What the page asked for, named as a person would say it. `wants` carries
+    /// the internal word the page asked with — "camera", "microphone" — which is
+    /// not what a sentence wants in the middle of it.
+    private func captureWanting(_ wants: String) -> String {
+        switch wants {
+        case "camera": return "Camera".saidNow
+        case "microphone": return "Microphone".saidNow
+        default: return "Camera and Microphone".saidNow
+        }
+    }
+
     /// A page asking to see or hear you. Named by the site, in its own words,
     /// with the answer remembered so it is asked once and not every call.
     private func captureAsking(_ ask: Browser.CaptureAsk) -> some View {
@@ -744,9 +755,9 @@ struct ContentView: View {
             Image(systemName: ask.wants == "location" ? "location" : ask.wants == "microphone" ? "mic" : ask.wants == "notifications" ? "bell" : "video")
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(Palette.muted)
-            Text(ask.wants == "location" ? "\(ask.host) wants to know your location"
-                 : ask.wants == "notifications" ? "\(ask.host) wants to send you notifications"
-                 : "\(ask.host) wants to use your \(ask.wants)")
+            Text(ask.wants == "location" ? String.said("%@ wants to know your location", ask.host)
+                 : ask.wants == "notifications" ? String.said("%@ wants to send you notifications", ask.host)
+                 : String.said("%@ wants to use your %@", ask.host, captureWanting(ask.wants)))
                 .font(.system(size: 12.5))
                 .foregroundStyle(Palette.ink)
             Button { ask.once ? browser.allowCaptureOnce() : browser.allowCapture() } label: {
@@ -787,10 +798,10 @@ struct ContentView: View {
         let login = offer.login
         return HStack(spacing: 12) {
             Text(offer.changed
-                 ? "Update the password for \(login.user) on \(login.host)?"
+                 ? String.said("Update the password for %@ on %@?", login.user, login.host)
                  : (login.user.isEmpty
-                    ? "Save this password for \(login.host)?"
-                    : "Save the password for \(login.user) on \(login.host)?"))
+                    ? String.said("Save this password for %@?", login.host)
+                    : String.said("Save the password for %@ on %@?", login.user, login.host)))
                 .font(.system(size: 12.5))
                 .foregroundStyle(Palette.ink)
                 .lineLimit(1)
@@ -824,7 +835,7 @@ struct ContentView: View {
     /// A dark pill, for the one mode this browser has. It stays up for as long
     /// as the mode does, which is how you know you are still in it.
     private func hint(_ text: String) -> some View {
-        Text(text)
+        Text(text.said)
             .font(.system(size: 11.5))
             .foregroundStyle(Palette.ground.opacity(0.92))
             .padding(.horizontal, 15)
@@ -1494,7 +1505,7 @@ private struct ImportProgress: View {
                 .foregroundStyle(Palette.ink)
                 .lineLimit(1)
                 .truncationMode(.middle)
-            Text(job.message)
+            Text(job.message.said)
                 .font(.system(size: 12))
                 .foregroundStyle(Palette.muted)
                 .lineLimit(1)

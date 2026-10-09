@@ -70,17 +70,17 @@ enum AISignIn {
         let code = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "code" }?.value ?? ""
         // Sent here by openrouter.ai, and not by a page the tab wandered to.
         let from = (tab.built?.url ?? tab.pageAddress)?.host()?.lowercased()
-        guard Date().timeIntervalSince(flow.started) < 600 else { return finish(false, "The sign-in took too long — try again.", tab, browser) }
+        guard Date().timeIntervalSince(flow.started) < 600 else { return finish(false, "The sign-in took too long — try again.".saidNow, tab, browser) }
         guard from == site.host()?.lowercased(), !code.isEmpty, code.count < 1024 else {
-            return finish(false, "The sign-in didn't come back from OpenRouter.", tab, browser)
+            return finish(false, "The sign-in didn't come back from OpenRouter.".saidNow, tab, browser)
         }
         Task { @MainActor in
             do {
                 let key = try await AIClient.shared.exchange(code: code, verifier: flow.verifier)
                 switch AIKeys.save(key, for: .openRouter) {
                 case .kept: _ = finish(true, nil, tab, browser)
-                case .unavailable: _ = finish(false, "This copy of Search can't keep keys (it isn't the signed release).", tab, browser)
-                case .failed: _ = finish(false, "The keychain refused the key.", tab, browser)
+                case .unavailable: _ = finish(false, "This copy of Search can't keep keys (it isn't the signed release).".saidNow, tab, browser)
+                case .failed: _ = finish(false, "The keychain refused the key.".saidNow, tab, browser)
                 }
             } catch {
                 _ = finish(false, error.localizedDescription, tab, browser)
@@ -92,7 +92,7 @@ enum AISignIn {
     @discardableResult
     private static func finish(_ kept: Bool, _ why: String?, _ tab: Tab, _ browser: Browser) -> Bool {
         if kept { browser.close(tab) }
-        browser.announce(kept ? "Signed in with OpenRouter" : (why ?? "The sign-in didn't work"))
+        browser.announce(kept ? "Signed in with OpenRouter".saidNow : (why ?? "The sign-in didn't work".saidNow))
         ended?(kept, why)
         return true
     }

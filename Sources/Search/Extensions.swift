@@ -530,7 +530,7 @@ final class Extensions: NSObject, ObservableObject {
             return
         }
         if installed.contains(where: { $0.id == id }) {
-            browser?.announce("Already installed")
+            browser?.announce("Already installed".saidNow)
             return
         }
         busy = id
@@ -567,21 +567,21 @@ final class Extensions: NSObject, ObservableObject {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
-        panel.prompt = "Load Extension"
-        panel.message = "Choose the folder that holds the extension's manifest.json."
+        panel.prompt = "Load Extension".saidNow
+        panel.message = "Choose the folder that holds the extension's manifest.json.".saidNow
         guard panel.runModal() == .OK, let source = panel.url else { return }
         installFolder(at: source)
     }
 
     func installFolder(at source: URL, confirm: Bool = true) {
         guard FileManager.default.fileExists(atPath: source.appendingPathComponent("manifest.json").path) else {
-            browser?.announce("That folder has no manifest.json")
+            browser?.announce("That folder has no manifest.json".saidNow)
             return
         }
         let source = URL(fileURLWithPath: Crx.realPath(of: source), isDirectory: true)
         let id = Crx.unpackedID(for: source)
         if installed.contains(where: { $0.id == id }) {
-            browser?.announce("Already installed. Press Reload to take its changes")
+            browser?.announce("Already installed. Press Reload to take its changes".saidNow)
             return
         }
         let staged = Extensions.stagingFolder(for: id)
@@ -595,7 +595,7 @@ final class Extensions: NSObject, ObservableObject {
                 try ExtensionShims.prepare(staged, fresh: true)
                 try await admit(staged, as: id, fromStore: false, finalFolder: Extensions.folder(for: id), confirm: confirm || !Store.testing, source: source)
             } catch {
-                browser?.announce("Couldn't install the extension: \(error.localizedDescription)")
+                browser?.announce(String.said("Couldn't install the extension: %@", error.localizedDescription))
             }
         }
     }
@@ -617,11 +617,11 @@ final class Extensions: NSObject, ObservableObject {
             if let path = original.source, let staged {
                 let source = URL(fileURLWithPath: path, isDirectory: true)
                 guard FileManager.default.fileExists(atPath: source.appendingPathComponent("manifest.json").path) else {
-                    browser?.announce("The folder \(original.name) was loaded from is gone")
+                    browser?.announce(String.said("The folder %@ was loaded from is gone", original.name))
                     return
                 }
                 guard original.sourceKeepsID else {
-                    browser?.announce("\(original.name) wasn't reloaded — its folder now leads somewhere else")
+                    browser?.announce(String.said("%@ wasn't reloaded — its folder now leads somewhere else", original.name))
                     return
                 }
                 do {
@@ -629,14 +629,14 @@ final class Extensions: NSObject, ObservableObject {
                     try Extensions.unlinkOutside(staged)
                     try ExtensionShims.prepare(staged, fresh: true)
                 } catch {
-                    browser?.announce("Couldn't copy \(original.name) again: \(error.localizedDescription)")
+                    browser?.announce(String.said("Couldn't copy %@ again: %@", original.name, error.localizedDescription))
                     return
                 }
             }
             let resource = staged ?? target
             let found = try? await WKWebExtension(resourceBaseURL: resource)
             if found == nil, staged != nil {
-                browser?.announce("\(original.name) wasn't reloaded — its manifest couldn't be read")
+                browser?.announce(String.said("%@ wasn't reloaded — its manifest couldn't be read", original.name))
                 return
             }
             var wants: [String]?
@@ -646,7 +646,7 @@ final class Extensions: NSObject, ObservableObject {
                 if !Set(permissions).isSubset(of: Set(original.permissions)) {
                     let name = [found.displayName ?? original.name, found.version].compactMap { $0 }.joined(separator: " ")
                     guard await ask(install: name, wants: Extensions.describe(found, in: resource), icon: found.icon(for: CGSize(width: 64, height: 64))) else {
-                        browser?.announce("\(original.name) wasn't reloaded — it asks for more than before")
+                        browser?.announce(String.said("%@ wasn't reloaded — it asks for more than before", original.name))
                         return
                     }
                 }
@@ -658,7 +658,7 @@ final class Extensions: NSObject, ObservableObject {
                 do {
                     try ExtensionFiles.replace(staged, at: target)
                 } catch {
-                    browser?.announce("Couldn't replace \(original.name): \(error.localizedDescription)")
+                    browser?.announce(String.said("Couldn't replace %@: %@", original.name, error.localizedDescription))
                     return
                 }
             }
@@ -672,7 +672,9 @@ final class Extensions: NSObject, ObservableObject {
                 save()
             }
             guard let item = installed.first(where: { $0.id == id }), item.enabled else { return }
-            browser?.announce(await load(item) ? "\(item.name) reloaded" : "\(item.name) couldn't start — see Settings › Extensions")
+            browser?.announce(await load(item)
+                ? String.said("%@ reloaded", item.name)
+                : String.said("%@ couldn't start — see Settings › Extensions", item.name))
         }
     }
 
@@ -757,9 +759,9 @@ final class Extensions: NSObject, ObservableObject {
         installed.append(item)
         save()
         if await load(item) {
-            browser?.announce("\(name) is installed")
+            browser?.announce(String.said("%@ is installed", name))
         } else {
-            browser?.announce("\(name) is installed, but WebKit couldn't start it")
+            browser?.announce(String.said("%@ is installed, but WebKit couldn't start it", name))
         }
     }
 
@@ -873,8 +875,10 @@ final class Extensions: NSObject, ObservableObject {
         guard let (id, url) = newTabCandidate, Store.settings.object(forKey: "extensions.newtab.\(id)") == nil,
               let name = installed.first(where: { $0.id == id })?.name else { return }
         Task {
-            let yes = await ask("Show “\(name)” in new tabs?", detail: "It asked to replace the new tab page. You can change this later in Settings › Extensions.",
-                                icon: contexts[id]?.webExtension.icon(for: CGSize(width: 64, height: 64)), yes: "Keep It", no: "Don't Allow")
+            let yes = await ask(String.said("Show “%@” in new tabs?", name),
+                                detail: "It asked to replace the new tab page. You can change this later in Settings › Extensions.".saidNow,
+                                icon: contexts[id]?.webExtension.icon(for: CGSize(width: 64, height: 64)),
+                                yes: "Keep It".saidNow, no: "Don't Allow".saidNow)
             Store.settings.set(yes, forKey: "extensions.newtab.\(id)")
             if yes, tab.isBlank, let browser { browser.replaceBlank(tab, with: url) }
         }
@@ -964,7 +968,7 @@ final class Extensions: NSObject, ObservableObject {
             // allowed when it was added or last asked about.
             let wants = Set(Extensions.grants(found, in: staged))
             if !wants.isSubset(of: Set(current.permissions)) {
-                guard await ask(install: "An update to \(item.name)", wants: Extensions.describe(found, in: staged), icon: found.icon(for: CGSize(width: 64, height: 64))) else {
+                guard await ask(install: String.said("An update to %@", item.name), wants: Extensions.describe(found, in: staged), icon: found.icon(for: CGSize(width: 64, height: 64))) else {
                     return
                 }
             }
@@ -1105,10 +1109,13 @@ final class Extensions: NSObject, ObservableObject {
         let declared = Set(((try? JSONSerialization.jsonObject(with: Data(contentsOf: folder.appendingPathComponent("manifest.json")))) as? [String: Any])?["permissions"] as? [String] ?? [])
         let patterns = found.allRequestedMatchPatterns
         if patterns.contains(where: { $0.matchesAllHosts || $0.matchesAllURLs }) {
-            out.append("Read and change everything on every website")
+            out.append("Read and change everything on every website".saidNow)
         } else if !patterns.isEmpty {
             let hosts = patterns.compactMap(\.host).filter { !$0.isEmpty }
-            out.append("Read and change what's on " + (hosts.prefix(4).joined(separator: ", ")) + (hosts.count > 4 ? " and \(hosts.count - 4) more" : ""))
+            let list = hosts.prefix(4).joined(separator: ", ")
+            out.append(hosts.count > 4
+                ? String.said("Read and change what's on %@ and %lld more", list, hosts.count - 4)
+                : String.said("Read and change what's on %@", list))
         }
         let words: [WKWebExtension.Permission: String] = [
             .tabs: "See your open tabs and their addresses",
@@ -1121,42 +1128,51 @@ final class Extensions: NSObject, ObservableObject {
             .scripting: "Run scripts in pages",
         ]
         for (permission, sentence) in words where found.requestedPermissions.contains(permission) && !added.contains(permission.rawValue) {
-            out.append(sentence)
+            out.append(sentence.saidNow)
         }
         // Chrome's own, which Search answers itself.
-        for (name, sentence) in Extensions.searchAnswered where declared.contains(name) { out.append(sentence) }
+        for (name, sentence) in Extensions.searchAnswered where declared.contains(name) { out.append(sentence.saidNow) }
         return out
     }
 
     private func ask(install name: String, wants: [String], icon: NSImage?) async -> Bool {
         await ask(
-            "Add “\(name)” to Search?",
-            detail: wants.isEmpty ? "It doesn't ask for anything special." : "It will be able to:\n• " + wants.joined(separator: "\n• "),
-            icon: icon, yes: "Add Extension", no: "Cancel"
+            String.said("Add “%@” to Search?", name),
+            detail: wants.isEmpty
+                ? "It doesn't ask for anything special.".saidNow
+                : String.said("It will be able to:\n• %@", wants.joined(separator: "\n• ")),
+            icon: icon, yes: "Add Extension".saidNow, no: "Cancel".saidNow
         )
     }
 
     /// An extension asking, through permissions.request, for one of the
-    /// permissions Search answers itself.
+    /// permissions Search answers itself. The sentence names it with `%@`.
     func ask(more names: String, context: WKWebExtensionContext) async -> Bool {
-        await ask("asks for more access", detail: names, context: context)
+        await ask(String.said("%@ asks for more access", who(context)), detail: names, context: context)
+    }
+
+    /// What to call an extension in a question: its own name, or a stand-in
+    /// when its manifest gives none.
+    private func who(_ context: WKWebExtensionContext) -> String {
+        context.webExtension.displayName ?? "An extension".saidNow
     }
 
     /// Recording the screen: asked once, naming the extension; the Mac's own
     /// picker still asks what to share, every time.
     func ask(capture context: WKWebExtensionContext) async -> Bool {
-        let name = context.webExtension.displayName ?? "An extension"
+        let name = who(context)
         return await ask(
-            "“\(name)” wants to record your screen or a window.",
-            detail: "macOS will ask what to share. Search remembers your answer for \(name); Settings › Extensions takes it back.",
-            icon: context.webExtension.icon(for: CGSize(width: 64, height: 64)), yes: "Continue", no: "Don't Allow")
+            String.said("“%@” wants to record your screen or a window.", name),
+            detail: String.said("macOS will ask what to share. Search remembers your answer for %@; Settings › Extensions takes it back.", name),
+            icon: context.webExtension.icon(for: CGSize(width: 64, height: 64)),
+            yes: "Continue".saidNow, no: "Don't Allow".saidNow)
     }
 
     func ask(_ question: String, detail: String, context: WKWebExtensionContext) async -> Bool {
         await ask(
-            "\(context.webExtension.displayName ?? "An extension") \(question)",
+            question,
             detail: detail, icon: context.webExtension.icon(for: CGSize(width: 64, height: 64)),
-            yes: "Allow", no: "Don't Allow"
+            yes: "Allow".saidNow, no: "Don't Allow".saidNow
         )
     }
 
@@ -1438,7 +1454,7 @@ extension Extensions: WKWebExtensionControllerDelegate {
 
     func webExtensionController(_ controller: WKWebExtensionController, promptForPermissions permissions: Set<WKWebExtension.Permission>, in tab: (any WKWebExtensionTab)?, for extensionContext: WKWebExtensionContext) async -> (Set<WKWebExtension.Permission>, Date?) {
         let detail = permissions.map(\.rawValue).sorted().joined(separator: ", ")
-        return await ask("asks for more access", detail: detail, context: extensionContext) ? (permissions, nil) : ([], nil)
+        return await ask(String.said("%@ asks for more access", who(extensionContext)), detail: detail, context: extensionContext) ? (permissions, nil) : ([], nil)
     }
 
     func webExtensionController(_ controller: WKWebExtensionController, promptForPermissionToAccess urls: Set<URL>, in tab: (any WKWebExtensionTab)?, for extensionContext: WKWebExtensionContext) async -> (Set<URL>, Date?) {
@@ -1457,8 +1473,9 @@ extension Extensions: WKWebExtensionControllerDelegate {
         let wanted = matchPatterns.filter { !Extensions.withheld($0) }
         guard !wanted.isEmpty else { return ([], nil) }
         let all = wanted.contains { $0.matchesAllHosts || $0.matchesAllURLs }
-        let what = all ? "every website" : wanted.map(\.string).sorted().joined(separator: ", ")
-        guard await ask("wants to read and change \(what)", detail: "Until you remove the extension.", context: extensionContext) else { return ([], nil) }
+        let what = all ? "every website".saidNow : wanted.map(\.string).sorted().joined(separator: ", ")
+        let question = String.said("%@ wants to read and change %@", who(extensionContext), what)
+        guard await ask(question, detail: "Until you remove the extension.".saidNow, context: extensionContext) else { return ([], nil) }
         // Given only once this returns: fenced again right after.
         DispatchQueue.main.async { Extensions.fence(extensionContext) }
         return (wanted, nil)
@@ -1704,7 +1721,7 @@ private struct ExtensionButtons: View {
                         .background(Anchor(id: button.id))
                         .contextMenu { ExtensionActions(id: button.id, name: button.name, extensions: extensions) }
                 }
-                Door(icon: "puzzlepiece.extension", on: extensions.menuOpen, help: "Extensions") {
+                Door(icon: "puzzlepiece.extension", on: extensions.menuOpen, help: "Extensions".saidNow) {
                     extensions.menuOpen.toggle()
                 }
                 .background(Anchor(id: Extensions.menuAnchor))
@@ -1796,7 +1813,7 @@ private struct ExtensionActions: View {
 
     var body: some View {
         let pinned = extensions.installed.first { $0.id == id }?.pinned ?? false
-        SwiftUI.Button(pinned ? "Unpin" : "Pin to Toolbar") { extensions.setPinned(id, !pinned) }
+        SwiftUI.Button(pinned ? "Unpin".said : "Pin to Toolbar".said) { extensions.setPinned(id, !pinned) }
         if extensions.contexts[id]?.optionsPageURL != nil {
             SwiftUI.Button("Options…") { extensions.openOptions(id) }
         }
@@ -1807,10 +1824,10 @@ private struct ExtensionActions: View {
 
     static func confirmRemove(_ id: String, name: String, _ extensions: Extensions) {
         let alert = NSAlert()
-        alert.messageText = "Remove “\(name)”?"
-        alert.informativeText = "Its settings and data go with it."
-        alert.addButton(withTitle: "Remove")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = String.said("Remove “%@”?", name)
+        alert.informativeText = "Its settings and data go with it.".saidNow
+        alert.addButton(withTitle: "Remove".saidNow)
+        alert.addButton(withTitle: "Cancel".saidNow)
         if alert.runModal() == .alertFirstButtonReturn { extensions.remove(id) }
     }
 }
@@ -1938,7 +1955,7 @@ private struct ExtensionMenu: View {
             }
             .buttonStyle(.plain)
             .onHover { hovering = $0 }
-            .help(help)
+            .help(help.said)
         }
     }
 
@@ -1957,7 +1974,7 @@ private struct ExtensionMenu: View {
         var body: some View {
             HStack(spacing: 8) {
                 Image(systemName: symbol).font(.system(size: 11)).foregroundStyle(Palette.muted).frame(width: 14)
-                Text(title).font(.system(size: 12.5)).foregroundStyle(Palette.ink)
+                Text(title.said).font(.system(size: 12.5)).foregroundStyle(Palette.ink)
                 Spacer(minLength: 0)
             }
             .padding(.horizontal, 10)

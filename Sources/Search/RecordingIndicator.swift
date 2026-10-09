@@ -200,7 +200,7 @@ struct PillView: View {
                             .background(Palette.ink, in: Capsule())
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Stop \(line.name)")
+                    .accessibilityLabel(String.said("Stop %@", line.name))
                 }
             }
         }

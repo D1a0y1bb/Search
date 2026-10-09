@@ -183,7 +183,7 @@ struct ImportPanel: View {
         if !lines.isEmpty {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(lines, id: \.self) { line in
-                    Text(line)
+                    Text(line.said)
                         .font(.system(size: 11.5))
                         .foregroundStyle(Palette.faint)
                         .fixedSize(horizontal: false, vertical: true)
@@ -212,7 +212,8 @@ struct ImportPanel: View {
                         }
                     )) {
                         ForEach(choices) { profile in
-                            Text(profile.id == usual[source.id] ? "Most recent: \(profile.name)" : profile.name).tag(profile.id)
+                            Text(profile.id == usual[source.id] ? String.said("Most recent: %@", profile.name) : profile.name)
+                                .tag(profile.id)
                         }
                         Divider()
                         Text("All profiles").tag("")
@@ -224,13 +225,13 @@ struct ImportPanel: View {
                 Rule()
             }
             // A kind the browser has none of is said so, and can't be picked.
-            Line("Passwords", preview?.passwords == 0 ? "None in \(source.name)" : source.asksForKey
-                 ? "macOS asks once for \(source.name)'s keychain key"
-                 : "Read from \(source.name)'s own files, unless it has a primary password") {
+            Line("Passwords", preview?.passwords == 0 ? String.said("None in %@", source.name) : source.asksForKey
+                 ? String.said("macOS asks once for %@'s keychain key", source.name)
+                 : String.said("Read from %@'s own files, unless it has a primary password", source.name)) {
                 option($wantsPasswords, none: preview?.passwords == 0)
             }
             Rule()
-            Line("Bookmarks", preview?.bookmarks == 0 ? "None in \(source.name)" : "In a “\(source.name)” folder, or at the top if you have none yet") {
+            Line("Bookmarks", preview?.bookmarks == 0 ? String.said("None in %@", source.name) : String.said("In a “%@” folder, or at the top if you have none yet", source.name)) {
                 option($wantsBookmarks, none: preview?.bookmarks == 0)
             }
             // Brought before: only what is new comes, unless what came from
@@ -239,27 +240,28 @@ struct ImportPanel: View {
             if wantsBookmarks, preview?.bookmarks != 0, let record = ImportRecords.of(source.name) {
                 Rule()
                 let recorded = !record.bookmarkIDs.isEmpty
-                Line("Replace what came from \(source.name) before",
-                     recorded ? "Its bookmarks from \(record.date.formatted(.dateTime.day().month())) go, and these come fresh; passwords only ever add"
-                              : "Nothing recorded from \(source.name) yet — only what is new comes") {
+                Line(String.said("Replace what came from %@ before", source.name),
+                     recorded ? String.said("Its bookmarks from %@ go, and these come fresh; passwords only ever add", record.date.formatted(.dateTime.day().month()))
+                              : String.said("Nothing recorded from %@ yet — only what is new comes", source.name)) {
                     option($replaceBookmarks, none: !recorded)
                 }
             }
             Rule()
-            Line("History", preview?.places == 0 ? "None in \(source.name)" : "The last \((preview.map { $0.places } ?? 3000).formatted()) places") {
+            Line("History", preview?.places == 0 ? String.said("None in %@", source.name) : String.said("The last %@ places", (preview.map { $0.places } ?? 3000).formatted())) {
                 option($wantsHistory, none: preview?.places == 0)
             }
             // Arc's own: its spaces, what is pinned in them, its favourites.
             if let arc = arcCounts[key(source, profile(of: source))], arc.spaces + arc.pinned > 0 {
                 Rule()
+                let spaces = arc.spaces == 1 ? String.said("1 space") : String.said("%lld spaces", arc.spaces)
                 Line("Spaces and pinned tabs",
-                     "\(arc.spaces == 1 ? "1 space" : "\(arc.spaces) spaces"), \(arc.pinned) pinned — each a space here, its pinned tabs asleep in it, the favourites as pins") {
+                     String.said("%@, %lld pinned — each a space here, its pinned tabs asleep in it, the favourites as pins", spaces, arc.pinned)) {
                     Switch(on: $wantsArc)
                 }
             }
             if !extensions.isEmpty {
                 Rule()
-                Line("Extensions", "\(extensions.count) found — installed fresh from the Chrome Web Store, you say yes to each one") {
+                Line("Extensions", String.said("%lld found — installed fresh from the Chrome Web Store, you say yes to each one", extensions.count)) {
                     Switch(on: $wantsExtensions)
                 }
             }
@@ -280,32 +282,41 @@ struct ImportPanel: View {
     }
 
     private func detail(of source: ImportSource) -> String {
-        guard let preview = previews[key(source, profile(of: source))] else { return "Counting…" }
-        func count(_ n: Int, _ one: String) -> String { n == 1 ? "1 \(one)" : "\(n.formatted()) \(one)s" }
+        guard let preview = previews[key(source, profile(of: source))] else { return String.said("Counting…") }
+        func count(_ n: Int, _ one: String, _ many: String) -> String {
+            n == 1 ? String.said(one) : String.said(many, n.formatted())
+        }
         var parts: [String] = []
-        if let choices = profiles[source.id], choices.count > 1 { parts.append("\(choices.count) profiles") }
+        if let choices = profiles[source.id], choices.count > 1 { parts.append(String.said("%lld profiles", choices.count)) }
         // What it has; a kind it has none of isn't worth a word.
-        for (n, one) in [(preview.bookmarks, "bookmark"), (preview.places, "place"), (preview.passwords, "password")] where n > 0 {
-            parts.append(count(n, one))
+        for (n, one, many) in [(preview.bookmarks, "1 bookmark", "%@ bookmarks"),
+                               (preview.places, "1 place", "%@ places"),
+                               (preview.passwords, "1 password", "%@ passwords")] where n > 0 {
+            parts.append(count(n, one, many))
         }
         if let arc = arcCounts[key(source, profile(of: source))], arc.spaces > 0 {
-            parts.append(count(arc.spaces, "space"))
+            parts.append(count(arc.spaces, "1 space", "%@ spaces"))
         }
         if let record = ImportRecords.of(source.name) {
-            parts.append("brought \(record.date.formatted(.dateTime.day().month()))")
+            parts.append(String.said("brought %@", record.date.formatted(.dateTime.day().month())))
         }
-        return parts.isEmpty ? "Nothing to bring in" : parts.joined(separator: " · ")
+        return parts.isEmpty ? String.said("Nothing to bring in") : parts.joined(separator: " · ")
     }
 
     /// What was brought from it before, in a line: "312 bookmarks, 1,204
     /// places and 58 passwords, 27 Sep".
     private func broughtBefore(_ record: ImportRecord) -> String {
-        func count(_ n: Int, _ one: String) -> String { n == 1 ? "1 \(one)" : "\(n.formatted()) \(one)s" }
-        let parts = [(record.bookmarks, "bookmark"), (record.places, "place"), (record.passwords, "password"),
-                     (record.spaces ?? 0, "space"), (record.pinned ?? 0, "pinned tab")]
-            .filter { $0.0 > 0 }.map { count($0.0, $0.1) }
-        let what = parts.isEmpty ? "Nothing new" : ListFormatter.localizedString(byJoining: parts)
-        return "\(what), \(record.date.formatted(.dateTime.day().month()))"
+        func count(_ n: Int, _ one: String, _ many: String) -> String {
+            n == 1 ? String.said(one) : String.said(many, n.formatted())
+        }
+        let parts = [(record.bookmarks, "1 bookmark", "%@ bookmarks"),
+                     (record.places, "1 place", "%@ places"),
+                     (record.passwords, "1 password", "%@ passwords"),
+                     (record.spaces ?? 0, "1 space", "%@ spaces"),
+                     (record.pinned ?? 0, "1 pinned tab", "%@ pinned tabs")]
+            .filter { $0.0 > 0 }.map { count($0.0, $0.1, $0.2) }
+        let what = parts.isEmpty ? String.said("Nothing new") : ListFormatter.localizedString(byJoining: parts)
+        return String.said("%@, %@", what, record.date.formatted(.dateTime.day().month()))
     }
 
     /// A kind's switch; off and out of reach when there is none of it.
@@ -331,7 +342,7 @@ struct ImportPanel: View {
         let wanted = browser.bringingIn ?? ""
         DispatchQueue.global(qos: .userInitiated).async {
             let found = ImportSource.installed()
-            let missing = Chromium.unreadable().map { "\($0.source.name) is on this Mac, but nothing of it was found in \($0.looked)." }
+            let missing = Chromium.unreadable().map { String.said("%@ is on this Mac, but nothing of it was found in %@.", $0.source.name, $0.looked) }
             let lists = found.map { ($0.id, $0.profiles, $0.usual) }
             DispatchQueue.main.async {
                 sources = found
@@ -389,14 +400,14 @@ struct ImportPanel: View {
                     case .success(let found):
                         let kept = browser.keep(found)
                         ImportRecords.note(source.name, passwords: kept)
-                        let skipped = found.skipped > 0 ? " (\(found.skipped.formatted()) skipped: no address)" : ""
-                        said[0] = Said(ok: true, text: (kept == 1 ? "1 password" : "\(kept.formatted()) passwords") + skipped)
+                        let skipped = found.skipped > 0 ? String.said(" (%@ skipped: no address)", found.skipped.formatted()) : ""
+                        said[0] = Said(ok: true, text: (kept == 1 ? String.said("1 password") : String.said("%@ passwords", kept.formatted())) + skipped)
                     case .failure(Chromium.Trouble.noPassphrase):
-                        said[0] = Said(ok: false, text: "macOS didn't hand over \(source.name)'s key — allow it and try again")
+                        said[0] = Said(ok: false, text: String.said("macOS didn't hand over %@'s key — allow it and try again", source.name))
                     case .failure(Mozilla.Trouble.primaryPassword):
-                        said[0] = Said(ok: false, text: "\(source.name) has a primary password: export your passwords from it and bring in the CSV file")
+                        said[0] = Said(ok: false, text: String.said("%@ has a primary password: export your passwords from it and bring in the CSV file", source.name))
                     case .failure:
-                        said[0] = Said(ok: false, text: "No passwords readable in \(source.name)")
+                        said[0] = Said(ok: false, text: String.said("No passwords readable in %@", source.name))
                     }
                     group.leave()
                 }
@@ -406,29 +417,32 @@ struct ImportPanel: View {
             let (added, already, kept) = browser.takeBookmarks(from: source, profile: profile, replacing: replaceBookmarks)
             marksLanded = added + already > 0
             said[1] = kept
-                ? Said(ok: false, text: "Couldn't read all of \(source.name)'s bookmarks: what came from it before was kept, \(added.formatted()) new")
-                : Said(ok: true, text: added == 0 && already == 0 ? "No bookmarks in \(source.name)"
-                           : already == 0 ? "\(added.formatted()) bookmarks"
-                           : "\(added.formatted()) new bookmarks, \(already.formatted()) already here")
+                ? Said(ok: false, text: String.said("Couldn't read all of %@'s bookmarks: what came from it before was kept, %@ new", source.name, added.formatted()))
+                : Said(ok: true, text: added == 0 && already == 0 ? String.said("No bookmarks in %@", source.name)
+                           : already == 0 ? String.said("%@ bookmarks", added.formatted())
+                           : String.said("%@ new bookmarks, %@ already here", added.formatted(), already.formatted()))
         }
         if places {
             group.enter()
             browser.takePlaces(from: source, profile: profile) { count in
-                said[2] = Said(ok: true, text: "\(count.formatted()) places")
+                said[2] = Said(ok: true, text: String.said("%@ places", count.formatted()))
                 group.leave()
             }
         }
         if #available(macOS 15.4, *), !extensions.isEmpty {
             // Each from the store, fresh and checked, one question at a time.
             Task { for id in extensions { await Extensions.shared.install(id: id) } }
-            said[3] = Said(ok: true, text: extensions.count == 1 ? "1 extension to confirm" : "\(extensions.count) extensions to confirm")
+            said[3] = Said(ok: true, text: extensions.count == 1 ? String.said("1 extension to confirm") : String.said("%lld extensions to confirm", extensions.count))
         }
         if wantsArc, arcCounts[key(source, profile)] != nil, let sidebar = source.arcSidebar(profile: profile) {
             let (spaces, pins, tabs) = browser.takeArc(sidebar, from: source, profile: profile)
             ImportRecords.note(source.name, spaces: spaces, pinned: pins + tabs)
-            func count(_ n: Int, _ one: String) -> String { n == 1 ? "1 \(one)" : "\(n.formatted()) \(one)s" }
-            said[4] = Said(ok: true, text: spaces + pins + tabs == 0 ? "Arc's spaces and pins were all here already"
-                           : "\(count(spaces, "new space")), \(count(pins, "pin")), \(count(tabs, "pinned tab"))")
+            func count(_ n: Int, _ one: String, _ many: String) -> String {
+                n == 1 ? String.said(one) : String.said(many, n.formatted())
+            }
+            said[4] = Said(ok: true, text: spaces + pins + tabs == 0 ? String.said("Arc's spaces and pins were all here already")
+                           : String.said("%@, %@, %@", count(spaces, "1 new space", "%@ new spaces"),
+                                         count(pins, "1 pin", "%@ pins"), count(tabs, "1 pinned tab", "%@ pinned tabs")))
         }
         group.notify(queue: .main) {
             bringing = false

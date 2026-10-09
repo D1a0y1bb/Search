@@ -152,7 +152,7 @@ struct PasswordsPanel: View {
 
         var body: some View {
             HStack(spacing: 10) {
-                Text(login.user.isEmpty ? "No username" : login.user)
+                Text(login.user.isEmpty ? "No username".saidNow : login.user)
                     .font(.system(size: 12))
                     .foregroundStyle(login.user.isEmpty ? Palette.faint : Palette.ink)
                     .lineLimit(1)
@@ -187,7 +187,7 @@ struct PasswordsPanel: View {
         }
 
         private func reveal() {
-            Vault.prove("show the password for \(login.host)") { ok in
+            Vault.prove(String.said("show the password for %@", login.host)) { ok in
                 // Read after the Mac has said who this is, not before: the
                 // secret is asked for here and let go with the row.
                 guard ok, let password = Vault.secret(of: login) else { return }
@@ -253,7 +253,7 @@ struct PasswordsPanel: View {
         private func field(_ name: String, text: Binding<String>, tag: Int) -> some View {
             ZStack(alignment: .leading) {
                 if text.wrappedValue.isEmpty {
-                    Text(name).foregroundStyle(Palette.ink.opacity(0.3)).padding(.leading, 10)
+                    Text(name.said).foregroundStyle(Palette.ink.opacity(0.3)).padding(.leading, 10)
                 }
                 TextField("", text: text)
                     .textFieldStyle(.plain)

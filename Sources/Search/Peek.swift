@@ -126,7 +126,7 @@ struct PeekPanel: View {
                     .overlay(Circle().strokeBorder(Palette.hairline, lineWidth: 1))
             }
             .buttonStyle(.plain)
-            .help(help)
+            .help(help.said)
             .onHover { hovering = $0 }
         }
     }

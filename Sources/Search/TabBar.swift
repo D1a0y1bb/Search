@@ -1095,7 +1095,7 @@ struct TabMenu: View {
         // to. Not the tab on screen, nor one that has to stay awake (#310).
         Button("Put to Sleep") {
             browser.sleep(tab) { outcome in
-                if outcome != "asleep" { browser.announce("Stays awake: \(outcome)") }
+                if outcome != "asleep" { browser.announce(String.said("Stays awake: %@", outcome)) }
             }
         }
         .disabled(browser.awake(because: tab) != nil)
@@ -1105,7 +1105,7 @@ struct TabMenu: View {
             .disabled(browser.tabs.count < 2)
         // ⌘⇧T, and the History menu's Recently Closed, where few think to
         // look for it: here too, where tabs are closed.
-        Button(browser.reopenTitle) { browser.reopen() }
+        Button(browser.reopenTitleSaid) { browser.reopen() }
             .disabled(browser.ghosts.isEmpty)
     }
 }

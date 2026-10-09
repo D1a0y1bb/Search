@@ -15,11 +15,11 @@ struct AccountList: View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(asked.passkeys) { passkey in
                 Row(mark: .symbol("person.badge.key"), name: passkey.name,
-                    detail: "Passkey" + (passkey.provider.map { " · \($0)" } ?? "")) { browser.choose(passkey) }
+                    detail: "Passkey".saidNow + (passkey.provider.map { " · \($0)" } ?? "")) { browser.choose(passkey) }
             }
             ForEach(asked.logins) { login in
                 Row(mark: .letter(login.user.first.map { String($0).uppercased() } ?? "•"),
-                    name: login.user.isEmpty ? "No name" : login.user, detail: login.host) { browser.choose(login) }
+                    name: login.user.isEmpty ? "No name".saidNow : login.user, detail: login.host) { browser.choose(login) }
             }
             HStack(spacing: 6) {
                 Image(systemName: "key")

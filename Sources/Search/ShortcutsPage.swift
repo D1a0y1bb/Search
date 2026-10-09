@@ -109,7 +109,7 @@ private struct KeyBox: View {
 
     var body: some View {
         Button(action: listen) {
-            Text(label)
+            Text(label.said)
                 .font(.system(size: 12, weight: store.isChanged(id) ? .semibold : .regular))
                 .foregroundStyle(listening || store.key(for: id) != nil ? Palette.ink : Palette.muted)
                 .lineLimit(1)
@@ -130,7 +130,7 @@ private struct KeyBox: View {
 
     private var label: String {
         if let taking, let other = store.owner(of: taking, except: id) {
-            return "Used by \(other.title) — press again"
+            return String.said("Used by %@ — press again", other.title.saidNow)
         }
         if let note { return note }
         if listening { return "Type a shortcut" }
@@ -170,7 +170,7 @@ private struct KeyBox: View {
         let other = store.owner(of: combo, except: id)
         store.assign(combo, to: id)
         stop()
-        if let other { browser.announce("\(combo.display) moved from \(other.title)") }
+        if let other { browser.announce(String.said("%@ moved from %@", combo.display, other.title.saidNow)) }
     }
 
     /// Why that key won't do, for a moment, still listening.

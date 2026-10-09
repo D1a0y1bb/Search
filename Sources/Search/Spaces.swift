@@ -378,7 +378,9 @@ struct SpaceDot: View {
         }
         .buttonStyle(.plain)
         .onHover { hovering = $0 }
-        .help("\(browser.space.name) — ⌃1–⌃9, or two fingers \(browser.prefs.sidebar ? "sideways" : "up or down") over the tabs, to switch")
+        .help(Text(String.said("%@ — ⌃1–⌃9, or two fingers %@ over the tabs, to switch",
+              browser.space.name,
+              String.said(browser.prefs.sidebar ? "sideways" : "up or down"))))
         .onChange(of: key) { _, now in
             let symbol = symbol
             DispatchQueue.main.async {
@@ -457,37 +459,37 @@ enum SpaceMenu {
             menu.addItem(entry)
         }
         menu.addItem(.separator())
-        menu.addItem(item("New Space…") { browser.askForSpace() })
+        menu.addItem(item("New Space…".saidNow) { browser.askForSpace() })
         menu.addItem(.separator())
         let here = browser.space
-        menu.addItem(item("Rename “\(here.name)”…") {
-            Ask.name("Rename Space", placeholder: here.name, initial: here.name, confirm: "Rename") { browser.renameSpace(here.id, to: $0) }
+        menu.addItem(item(String.said("Rename “%@”…", here.name)) {
+            Ask.name("Rename Space".saidNow, placeholder: here.name, initial: here.name, confirm: "Rename".saidNow) { browser.renameSpace(here.id, to: $0) }
         })
         let icons = NSMenu()
         for (symbol, name) in zip(Spaces.icons, Spaces.iconNames) {
-            let choice = item(name, checked: here.symbol == symbol) { browser.setSpaceIcon(here.id, to: symbol) }
-            choice.image = NSImage(systemSymbolName: symbol, accessibilityDescription: name)
+            let choice = item(name.saidNow, checked: here.symbol == symbol) { browser.setSpaceIcon(here.id, to: symbol) }
+            choice.image = NSImage(systemSymbolName: symbol, accessibilityDescription: name.saidNow)
             icons.addItem(choice)
         }
-        let icon = NSMenuItem(title: "Icon", action: nil, keyEquivalent: "")
+        let icon = NSMenuItem(title: "Icon".saidNow, action: nil, keyEquivalent: "")
         icon.submenu = icons
         menu.addItem(icon)
         // The order is the swipe's, and ⌃1–⌃9's.
         if let at = browser.spaces.firstIndex(where: { $0.id == here.id }) {
-            if at > 0 { menu.addItem(item("Move Left") { browser.moveSpace(here.id, to: at - 1) }) }
-            if at < browser.spaces.count - 1 { menu.addItem(item("Move Right") { browser.moveSpace(here.id, to: at + 1) }) }
+            if at > 0 { menu.addItem(item("Move Left".saidNow) { browser.moveSpace(here.id, to: at - 1) }) }
+            if at < browser.spaces.count - 1 { menu.addItem(item("Move Right".saidNow) { browser.moveSpace(here.id, to: at + 1) }) }
         }
         let folder = here.downloads.map { URL(fileURLWithPath: $0).lastPathComponent }
-        menu.addItem(item(folder.map { "Downloads to “\($0)”…" } ?? "Downloads Folder…") {
+        menu.addItem(item(folder.map { String.said("Downloads to “%@”…", $0) } ?? "Downloads Folder…".saidNow) {
             Ask.folder { browser.setSpaceDownloads(here.id, to: $0) }
         })
         if folder != nil {
-            menu.addItem(item("Downloads to the Folder in Settings") { browser.setSpaceDownloads(here.id, to: nil) })
+            menu.addItem(item("Downloads to the Folder in Settings".saidNow) { browser.setSpaceDownloads(here.id, to: nil) })
         }
         if !here.isFirst {
             menu.addItem(.separator())
-            menu.addItem(item("Delete “\(here.name)”…") {
-                Ask.sure("Delete “\(here.name)”?", detail: "Its tabs close, and its cookies and sign-ins are erased from this Mac. History and bookmarks stay.", confirm: "Delete") {
+            menu.addItem(item(String.said("Delete “%@”…", here.name)) {
+                Ask.sure(String.said("Delete “%@”?", here.name), detail: "Its tabs close, and its cookies and sign-ins are erased from this Mac. History and bookmarks stay.".saidNow, confirm: "Delete".saidNow) {
                     browser.deleteSpace(here.id)
                 }
             })
@@ -520,18 +522,18 @@ enum Ask {
     /// have — for when the column isn't there to hold the card.
     static func newSpace(then: @escaping (String, Bool) -> Void, cancelled: @escaping () -> Void) {
         let alert = NSAlert()
-        alert.messageText = "New Space"
-        alert.informativeText = "Its own tabs. Signed in where your other spaces are, unless it starts afresh."
+        alert.messageText = "New Space".saidNow
+        alert.informativeText = "Its own tabs. Signed in where your other spaces are, unless it starts afresh.".saidNow
         let field = NSTextField(frame: NSRect(x: 0, y: 30, width: 260, height: 24))
-        field.placeholderString = "Work"
-        let fresh = NSButton(checkboxWithTitle: "Start signed out, with its own cookies", target: nil, action: nil)
+        field.placeholderString = "Work".saidNow
+        let fresh = NSButton(checkboxWithTitle: "Start signed out, with its own cookies".saidNow, target: nil, action: nil)
         fresh.frame = NSRect(x: 0, y: 0, width: 260, height: 22)
         let box = NSView(frame: NSRect(x: 0, y: 0, width: 260, height: 56))
         box.addSubview(field)
         box.addSubview(fresh)
         alert.accessoryView = box
-        alert.addButton(withTitle: "Create")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "Create".saidNow)
+        alert.addButton(withTitle: "Cancel".saidNow)
         alert.window.initialFirstResponder = field
         show(alert) { ok in
             let name = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -545,7 +547,7 @@ enum Ask {
         alert.messageText = title
         alert.informativeText = detail
         alert.addButton(withTitle: confirm).hasDestructiveAction = true
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "Cancel".saidNow)
         show(alert) { ok in if ok { then() } }
     }
 
@@ -554,8 +556,8 @@ enum Ask {
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.canCreateDirectories = true
-        panel.prompt = "Use for This Space"
-        panel.message = "Downloads in this space go here. Cancel keeps the folder it has."
+        panel.prompt = "Use for This Space".saidNow
+        panel.message = "Downloads in this space go here. Cancel keeps the folder it has.".saidNow
         guard let window = Links.window else { return }
         panel.beginSheetModal(for: window) { answer in
             if answer == .OK, let url = panel.url { then(url) }

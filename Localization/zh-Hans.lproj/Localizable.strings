@@ -1,0 +1,1343 @@
+/* Search — 简体中文.
+   键就是代码里的英文原句；没登记的句子原样显示英文。
+   品牌名 Search 不译。占位符（%@ %lld %% ）必须与英文原句一致。
+   由 Localization/ 下的分件合并而成；见 build.sh。 */
+
+
+/* g0-lead.strings */
+"Camera" = "摄像头";
+"Microphone" = "麦克风";
+"Camera and Microphone" = "摄像头和麦克风";
+" %@" = " %@";
+
+/* g8-tabs.strings */
+"Reading…" = "正在读取…";
+
+/* g0-lead.strings */
+"top left" = "左上";
+"top centre" = "顶部居中";
+"top right" = "右上";
+"middle left" = "左侧居中";
+"centre centre" = "正中";
+"middle right" = "右侧居中";
+"bottom left" = "左下";
+"bottom centre" = "底部居中";
+"bottom right" = "右下";
+
+/* g8-tabs.strings */
+"No site at that address." = "该地址上没有网站。";
+
+/* g0-lead.strings */
+"Delete" = "删除";
+"Enter a web address" = "输入网址";
+
+/* g1-settings.strings */
+"Settings" = "设置";
+"General" = "通用";
+
+/* g2-app.strings */
+"Tabs" = "标签页";
+
+/* g1-settings.strings */
+"Shortcuts" = "快捷键";
+
+/* g5-extensions.strings */
+"Extensions" = "扩展";
+
+/* g6-passwords.strings */
+"Passwords" = "密码";
+
+/* g3-panels.strings */
+"Downloads" = "下载";
+
+/* g1-settings.strings */
+"Privacy" = "隐私";
+"About" = "关于";
+"Done   esc" = "完成   esc";
+"Language" = "语言";
+"The words of this app. Search restarts to put new ones in place." = "这个应用的界面文字。应用新语言需要重新启动 Search。";
+"Follow Mac" = "跟随 Mac";
+"Relaunch now" = "立即重新启动";
+"Open links from other apps" = "在其他 App 中打开链接";
+"Search is the default browser on this Mac" = "Search 是这台 Mac 上的默认浏览器";
+"Mail, Slack and the rest still send links elsewhere" = "邮件、Slack 等 App 仍会把链接发往别处";
+"Make default" = "设为默认";
+"Links now open here" = "链接现在从这里打开";
+"macOS didn't change it" = "macOS 没有更改";
+
+/* g4-welcome.strings */
+"Bring things over" = "导入数据";
+
+/* g1-settings.strings */
+"Bookmarks, history, passwords and extensions from another browser on this Mac, or from a file it exported" = "从这台 Mac 上的其他浏览器，或它导出的文件，导入书签、历史记录、密码和扩展";
+
+/* g2-app.strings */
+"Bring Things Over…" = "从其他浏览器导入…";
+
+/* g1-settings.strings */
+"Search with" = "搜索引擎";
+"Where words that aren't an address go" = "不是网址的词会送到这里";
+"An http or https address with %s where the words go. Until then, Google" = "一个 http 或 https 地址，用 %s 表示搜索词的位置。在此之前使用 Google";
+"Words go to %@" = "搜索词会送到 %@";
+
+/* g9-spaces.strings */
+"Custom" = "自定义";
+
+/* g1-settings.strings */
+"Site shortcuts" = "网站快捷搜索";
+"A word before your search goes straight to that site, whatever engine you've picked — \"yt cats\" to YouTube" = "在搜索词前加一个词，即可直接在该网站搜索，无论选的是哪个搜索引擎 — 例如「yt cats」到 YouTube";
+"A word, then the site's search address with %s where the words go" = "一个词，再加网站的搜索地址，用 %s 表示搜索词的位置";
+"%@ will search %@" = "%@ 将搜索 %@";
+
+/* g6-passwords.strings */
+"Add" = "添加";
+
+/* g8-tabs.strings */
+"Cancel" = "取消";
+
+/* g7-ai.strings */
+"Save" = "存储";
+
+/* g1-settings.strings */
+"Appearance" = "外观";
+"Light, dark, or whatever the Mac is doing — pages follow it too" = "浅色、深色，或跟随 Mac — 页面也一样";
+"Light" = "浅色";
+"Dark" = "深色";
+"System" = "跟随系统";
+"Page zoom" = "页面缩放";
+"Where every site starts. ⌘+ and ⌘− are still remembered for each site." = "每个网站的起始缩放比例。各网站单独记住的 ⌘+ 和 ⌘− 仍然有效。";
+"Back to %@" = "回到 %@";
+"Correct spelling as you type" = "键入时纠正拼写";
+"macOS's autocorrect inside pages — the one that capitalises for you" = "网页内的 macOS 自动更正 — 会自动替你把首字母大写";
+"Peek at a link with a shift-click" = "按住 Shift 点击预览链接";
+"Its page opens in a panel over the one you're reading. Escape puts it away; the other button keeps it as a tab" = "它的页面会在你正在阅读的页面之上的面板中打开。按 Escape 收起；用另一个按钮可保留为标签页";
+"Open links from other apps in a small window" = "在其他 App 打开链接时用小窗口";
+"To read and close, or keep with Open in Search (⌘O)" = "读完即关，或用「在 Search 中打开」(⌘O) 保留";
+"Address bar commands" = "地址栏命令";
+"A word like \"settings\" or \"new tab\", typed alone in the address field, goes there instead of searching for it" = "在地址栏单独键入「settings」或「new tab」这样的词，会直接前往对应位置，而不是搜索它";
+"Show where links go" = "显示链接的去向";
+"Point at a link and its address shows at the bottom of the page" = "指向链接时，其地址显示在页面底部";
+
+/* g4-welcome.strings */
+"Scroll with the middle button" = "用中键滚动";
+
+/* g1-settings.strings */
+"Click the wheel on a page, then move the mouse up or down to scroll, as on Windows. Click again to stop" = "在页面上点击滚轮，然后上下移动鼠标即可滚动，如同 Windows。再次点击停止";
+
+/* g4-welcome.strings */
+"Pages at 120 Hz" = "页面以 120 Hz 显示";
+
+/* g1-settings.strings */
+"Animations and scrolling in pages at up to 120 frames a second on a screen that can, instead of 60 as in Safari. Uses more battery. Open tabs follow when reloaded" = "在支持的屏幕上，页面动画和滚动最高每秒 120 帧，而不是像 Safari 那样 60 帧。更耗电。已打开的标签页在重新加载后生效";
+"Hold a swipe to pick from history" = "按住轻扫以从历史记录中挑选";
+"Swipe back or forward and keep your fingers down: the pages that way appear, and moving up or down picks one to go to" = "向后或向前轻扫并保持手指不离开：该方向的页面会出现，上下移动即可选择要前往的页面";
+"Flick the floating video to a corner" = "把浮动视频甩到边角";
+"Two fingers on it send it to the corner or edge they point at, instead of pushing it along; a strong swipe at the side of the screen it is against tucks it in there, a sliver left to bring it back by. Dragging still puts it anywhere" = "双指在它上面滑动，会把它送到所指的边角，而不是推着它移动；朝它贴着的那一侧快速轻扫会把它收进去，只留一条边以便拉回。拖动仍然可以把它放到任何位置";
+
+/* g4-welcome.strings */
+"Videos wait for a click" = "视频等点击后再播放";
+
+/* g1-settings.strings */
+"Videos don't start by themselves, even without sound; they play when you press play. Tabs already open follow once closed and opened again, or after they've slept" = "视频不会自行开始播放，即使没有声音；按下播放才会播放。已打开的标签页在关闭再打开后，或休眠后生效";
+"Float the video when you switch tabs" = "切换标签页时浮动视频";
+"A video playing on YouTube and the like comes out into its floating window when you go to another tab, and back when you return. ⇧⌘P still floats one by hand" = "在 YouTube 等网站播放的视频，切到其他标签页时会进入浮动窗口，回来时回到原处。⇧⌘P 仍可手动浮动";
+
+/* g4-welcome.strings */
+"Float the video when you switch apps" = "切换 App 时浮动视频";
+
+/* g1-settings.strings */
+"A video playing on the site you're on comes out into its floating window as another app comes to the front, and goes back into its tab when you return" = "你所在网站播放的视频，在其他 App 移到前台时会进入浮动窗口，回来时回到所在标签页";
+"Let a script drive Search" = "允许脚本驱动 Search";
+"A local socket for testing. Its tabs open beside yours with a flask on them and never take over — see ./bench" = "用于测试的本地套接字。它的标签页会带着烧瓶标记开在你旁边，绝不会接管 — 见 ./bench";
+"Back, forward and reload on the left" = "后退、前进和重新加载在左侧";
+"Beside the window's buttons, before the tabs" = "在窗口按钮旁，标签页之前";
+"Tabs in a sidebar" = "标签页放在侧栏";
+"Down the %@ instead of across the top. Pull its edge to make it wider; double-click the edge to reset." = "标签页沿%@排列，而不是横跨顶部。拖动其边缘可加宽；双击边缘可重置。";
+"Left" = "左侧";
+"Right" = "右侧";
+"Sidebar position" = "侧栏位置";
+"Tabs down the %@ edge of the window" = "标签页沿窗口的%@排列";
+"Hide the sidebar until the pointer reaches the edge" = "指针到达边缘前隐藏侧栏";
+"The page takes the whole window; push against its %@ edge for the tabs. ⌘S keeps them out." = "页面占满整个窗口；把指针推到%@边缘即可显示标签页。⌘S 可让它们保持隐藏。";
+"Tabs show" = "标签页显示";
+"Beside the title, and on a pinned square" = "在标题旁，以及固定的方块上";
+"Letters" = "字母";
+"Site icons" = "网站图标";
+
+/* g4-welcome.strings */
+"Show the bookmarks bar" = "显示书签栏";
+
+/* g1-settings.strings */
+"Your bookmarks in a row above the page, folders opening as menus. It folds away with the tabs" = "书签在页面上方排成一行，文件夹以菜单展开。它会随标签页一起收起";
+"Show how far you've read" = "显示阅读进度";
+"The tab you're on fills with grey as you scroll down the page" = "向下滚动页面时，当前标签页会填充灰色";
+"Sleep tabs you aren't using" = "让未使用的标签页休眠";
+"After half an hour away they come back where you left them. Pinned tabs, sound, calls and anything typed stay awake." = "离开半小时后，它们会回到你离开时的位置。固定的标签页、有声音、通话中或已键入内容的标签页保持唤醒。";
+"Load background tabs when you go to them" = "前往时才载入后台标签页";
+"A link opened behind the page, with ⌘-click or the middle button, or a batch of links from another app, waits until you go to its tab. ⇧⌘-click still takes you there at once." = "在页面背后打开的链接（⌘ 点击或中键），或来自其他 App 的一批链接，会等到你前往其标签页时才载入。⇧⌘ 点击仍会立即前往。";
+
+/* g4-welcome.strings */
+"Search a site from the address field" = "从地址栏搜索网站";
+
+/* g1-settings.strings */
+"Type the start of a site's name, like red or yout, then Tab, and what you type next searches that site. Sites you visit that offer a search join the list." = "键入网站名称的开头（如 red 或 yout），按 Tab，之后键入的内容会在该网站搜索。你访问过且提供搜索的网站会加入列表。";
+
+/* g4-welcome.strings */
+"Start with a fresh window" = "以全新窗口启动";
+
+/* g1-settings.strings */
+"Each time Search opens, your pinned tabs are there and last time's other tabs aren't." = "每次打开 Search 时，固定的标签页都在，上次的其他标签页不会回来。";
+
+/* g4-welcome.strings */
+"Spaces" = "空间";
+
+/* g1-settings.strings */
+"Separate sets of tabs, signed in where the others are or starting afresh, switched with ⌃1–⌃9, two fingers sideways over the column, or the space's icon. Mission Control's own ⌃1–⌃9, if you turned them on, take those keys first." = "各自独立的标签页集合，登录状态与其他空间相同或全新开始，用 ⌃1–⌃9、在侧栏上双指横滑，或空间的图标切换。如果你开启了调度中心自己的 ⌃1–⌃9，那些键会先被它占用。";
+
+/* g4-welcome.strings */
+"Tab groups" = "标签组";
+
+/* g1-settings.strings */
+"Named sections in the sidebar. Right-click a tab to start a group; click its heading to hide or show its tabs." = "侧栏中带名字的分组。右键点击标签页可新建标签组；点击其标题可隐藏或显示其中的标签页。";
+"Pinned rows" = "固定的行";
+"As in Arc: pins as squares for the sites you live in, pins as rows under them for pages you keep, and a line over the rest with Clear. Right-click a tab to pin it as a row." = "如同 Arc：常用网站固定为方块，保留的页面固定为方块下方的行，其余标签页上方有一道带「清除」的分隔线。右键点击标签页可将其固定为一行。";
+
+/* g4-welcome.strings */
+"Split View" = "分屏";
+
+/* g1-settings.strings */
+"Show two tabs side by side. Drag a tab onto a page to pair them." = "并排显示两个标签页。把一个标签页拖到页面上即可配对。";
+"Your passwords" = "你的密码";
+"In the macOS keychain, shown with Touch ID" = "保存在 macOS 钥匙串中，用 Touch ID 显示";
+"Open…" = "打开…";
+"Offer to save passwords" = "提供存储密码";
+"%@ does the saving — it asked Search not to offer" = "由 %@ 负责存储 — 它要求 Search 不要提供";
+"Asked once per site, never again for a site you refuse" = "每个网站询问一次，拒绝过的网站不再询问";
+"Fill in sign-ins" = "自动填充登录信息";
+"Click a sign-in box and the accounts kept for the site hang from it" = "点击登录框时，该网站保存的账户会从下方列出";
+"Offer passkeys" = "提供通行密钥";
+"Needs an Apple entitlement this build doesn't have — off keeps sites to the password" = "需要 Apple 授权，此版本没有 — 关闭后网站只能使用密码";
+"macOS was told no — System Settings › Privacy & Security › Passkeys Access for Web Browsers" = "macOS 被拒绝 — 系统设置 › 隐私与安全性 › 网页浏览器通行密钥访问";
+"Touch ID or an iCloud passkey, on sites that offer one" = "在提供通行密钥的网站使用 Touch ID 或 iCloud 通行密钥";
+"Sites never asked" = "不再询问的网站";
+"%lld sites told to stop offering" = "已告知 %lld 个网站停止提供";
+
+/* g7-ai.strings */
+"Forget" = "忘记";
+
+/* g1-settings.strings */
+"Every site can ask again" = "所有网站都可以再次询问";
+"Bring yours in" = "导入你的数据";
+"From another browser on this Mac — nothing leaves it" = "从这台 Mac 上的其他浏览器导入 — 数据不会离开这台 Mac";
+"Import…" = "导入…";
+"Save to" = "存储到";
+"Change…" = "更改…";
+"Ask where to save each file" = "每个文件都询问存储位置";
+
+/* g4-welcome.strings */
+"Always show the downloads button" = "始终显示下载按钮";
+
+/* g1-settings.strings */
+"Beside the other buttons, even with nothing downloading. Off, it shows only while a file comes in" = "即使没有下载也显示在其他按钮旁。关闭后只在有文件下载时显示";
+"Use this folder" = "使用此文件夹";
+"Block ads and trackers" = "拦截广告和跟踪器";
+"Third parties whose only job is to watch" = "那些只为了监视你的第三方";
+"Nothing is being blocked until this clears — try again, or restart Search" = "在此问题清除前不会拦截任何内容 — 重试，或重新启动 Search";
+
+/* g2-app.strings */
+"Try again" = "重试";
+
+/* g1-settings.strings */
+"Block on %@" = "在 %@ 上拦截";
+"Turn off here if the site breaks — the page reloads" = "如果网站因此异常，可在此关闭 — 页面会重新加载";
+"Prevent cross-site tracking" = "阻止跨站跟踪";
+"As in Safari. Off, sites you rarely open keep their sign-ins, and trackers inside other sites can follow you across them again, as in Chrome. Private tabs keep it on" = "同 Safari。关闭后，你不常打开的网站会保留登录状态，其他网站内的跟踪器也能再次跨站跟踪你，如同 Chrome。无痕标签页仍然开启";
+"Camera, microphone, location and notifications" = "摄像头、麦克风、位置和通知";
+"What each site was allowed or refused, and the sites whose videos don't float" = "每个网站被允许或拒绝的权限，以及视频不浮动的网站";
+"Forget choices" = "忘记选择";
+"Let sites ask to send notifications" = "允许网站请求发送通知";
+"A site asks on a card over its page, and only one you allow reaches your Mac's notifications. Private tabs are never asked" = "网站会在其页面上的卡片中询问，只有你允许的才会进入 Mac 的通知。无痕标签页从不询问";
+
+/* g4-welcome.strings */
+"History" = "历史记录";
+
+/* g1-settings.strings */
+"Every address you have been to" = "你去过的每个地址";
+
+/* g9-spaces.strings */
+"Clear" = "清除";
+
+/* g3-panels.strings */
+"Cookies and sign-ins" = "Cookie 和登录信息";
+"Signs you out of every site" = "让你退出所有网站";
+"Sign out of everything" = "退出所有网站";
+"Cache" = "缓存";
+"Only what was fetched to draw pages" = "仅包含为绘制页面而获取的内容";
+
+/* g1-settings.strings */
+"Can send notifications" = "可以发送通知";
+
+/* g7-ai.strings */
+"Remove" = "移除";
+
+/* g1-settings.strings */
+"by Office Commun · version %@" = "由 Office Commun 出品 · 版本 %@";
+"Updates" = "更新";
+
+/* g4-welcome.strings */
+"Search %@ is downloading…" = "Search %@ 正在下载…";
+
+/* g1-settings.strings */
+"Search %@ is ready" = "Search %@ 已准备好";
+"Search %@ is out" = "Search %@ 已发布";
+"Checked %@ — every hour on its own" = "上次检查：%@ — 每小时自动检查";
+"Checked every hour on its own" = "每小时自动检查";
+"Quietly, in the background — nothing you have set is touched" = "在后台安静进行 — 不会改动你的任何设置";
+"It's there the next time you open Search" = "下次打开 Search 时即可使用";
+"Open the disk image, the same as the first time" = "打开磁盘映像，与首次相同";
+"Checked and put in place when you press Install" = "按下「安装」时检查并安装到位";
+"Checking…" = "正在检查…";
+"Check now" = "立即检查";
+"This is the latest one" = "已是最新版本";
+"Downloading…" = "正在下载…";
+
+/* g7-ai.strings */
+"Download" = "下载";
+
+/* g1-settings.strings */
+"Install" = "安装";
+"Install updates on its own" = "自动安装更新";
+"Off, Search still looks every hour and tells you, and installs only when you press Install" = "关闭后，Search 仍会每小时检查并告知你，只有按下「安装」时才会安装";
+"Found something wrong?" = "发现问题？";
+"Opens a draft with the version already in it" = "打开一封已包含版本信息的草稿";
+"Send Feedback" = "发送反馈";
+"What's new" = "新功能";
+"Every version's notes, newest first" = "每个版本的更新说明，最新的在前";
+"What's New…" = "新功能…";
+"Address" = "地址";
+"Switch tab" = "切换标签页";
+"New, close, reopen tab" = "新建、关闭、重新打开标签页";
+"Paste and go" = "粘贴并前往";
+"Copy address" = "拷贝地址";
+"Next tab, a tab by its place" = "下一个标签页，按位置选择标签页";
+"Fold the sidebar away" = "收起侧栏";
+"Reading mode" = "阅读模式";
+"Hide something on this site" = "在此网站隐藏元素";
+"Float the video" = "浮动视频";
+"Clear browsing data" = "清除浏览数据";
+"Search commands or keys" = "搜索命令或快捷键";
+"No command called that, or on that key" = "没有叫这个名字或使用这个快捷键的命令";
+"Clear Shortcut" = "清除快捷键";
+"Reset to Default" = "恢复默认";
+"Reset All to Defaults" = "全部恢复默认";
+"Used by %@ — press again" = "已由 %@ 使用 — 再按一次";
+"Type a shortcut" = "按下快捷键";
+"None" = "无";
+"Add ⌘, ⌥ or ⌃" = "需加 ⌘、⌥ 或 ⌃";
+"Can’t be changed" = "无法更改";
+"Not for an extension" = "扩展不能使用";
+"%@ moved from %@" = "%@ 已从 %@ 移来";
+
+/* g2-app.strings */
+"Settings…" = "设置…";
+"Welcome…" = "欢迎…";
+"Passwords…" = "密码…";
+
+/* g8-tabs.strings */
+"New Window" = "新建窗口";
+"New Tab" = "新标签页";
+
+/* g2-app.strings */
+"New Private Tab" = "新建无痕标签页";
+
+/* g8-tabs.strings */
+"Reopen Closed Tab" = "重新打开关闭的标签页";
+
+/* g2-app.strings */
+"Open Address…" = "打开地址…";
+
+/* g8-tabs.strings */
+"Close Tab" = "关闭标签页";
+
+/* g2-app.strings */
+"Share…" = "共享…";
+"Print…" = "打印…";
+"Find on Page…" = "在页面中查找…";
+"Find Next" = "查找下一个";
+"Find Previous" = "查找上一个";
+"Show Tabs in Sidebar" = "在侧栏中显示标签页";
+
+/* g1-settings.strings */
+"Hide Sidebar or Tab Bar" = "隐藏侧栏或标签栏";
+
+/* g2-app.strings */
+"Reload Page" = "重新加载页面";
+"Reload Page From Origin" = "从源重新加载页面";
+"Reading Mode" = "阅读模式";
+"Float Video" = "浮动视频";
+"Summarize Page" = "总结页面";
+"Ask About This Page…" = "询问此页面…";
+"Hide Elements…" = "隐藏元素…";
+"Hidden on This Site…" = "在此网站隐藏的内容…";
+"Zoom In" = "放大";
+"Zoom Out" = "缩小";
+"Actual Size" = "实际大小";
+"Web Inspector" = "网页检查器";
+"JavaScript Console" = "JavaScript 控制台";
+"Inspect Element" = "检查元素";
+
+/* g4-welcome.strings */
+"Back" = "后退";
+
+/* g2-app.strings */
+"Forward" = "前进";
+"Next Tab" = "下一个标签页";
+"Previous Tab" = "上一个标签页";
+"Search Tabs…" = "搜索标签页…";
+"Split Current Page" = "分屏当前页面";
+"Focus Left Page" = "聚焦左侧页面";
+"Focus Right Page" = "聚焦右侧页面";
+
+/* g1-settings.strings */
+"Focus Other Page" = "聚焦另一个页面";
+
+/* g8-tabs.strings */
+"Swap Pages" = "交换页面";
+"Separate Split Tabs" = "分离分屏标签页";
+
+/* g2-app.strings */
+"Rename Tab" = "重命名标签页";
+"Duplicate Tab" = "复制标签页";
+
+/* g8-tabs.strings */
+"Copy Address" = "拷贝地址";
+"Copy as Markdown Link" = "拷贝为 Markdown 链接";
+
+/* g2-app.strings */
+"Paste and Go" = "粘贴并前往";
+
+/* g8-tabs.strings */
+"Close Other Tabs" = "关闭其他标签页";
+
+/* g2-app.strings */
+"Stop Sound in Tab" = "停止标签页中的声音";
+
+/* g3-panels.strings */
+"Add This Page" = "添加此页面";
+
+/* g2-app.strings */
+"Show Bookmarks…" = "显示书签…";
+"Show Bookmarks Bar" = "显示书签栏";
+"Show History…" = "显示历史记录…";
+"Downloads…" = "下载…";
+"Clear Browsing Data…" = "清除浏览数据…";
+"Clear History" = "清除历史记录";
+
+/* g9-spaces.strings */
+"File" = "文件";
+
+/* g1-settings.strings */
+"Edit" = "编辑";
+"View" = "显示";
+
+/* g4-welcome.strings */
+"Bookmarks" = "书签";
+
+/* g2-app.strings */
+"Show Sidebar" = "显示侧栏";
+"Hide Sidebar" = "隐藏侧栏";
+"Show Tab Bar" = "显示标签栏";
+"Hide Tab Bar" = "隐藏标签栏";
+"Tabs Wear" = "标签页外观";
+
+/* g8-tabs.strings */
+"Close Both Pages" = "关闭两个页面";
+
+/* g2-app.strings */
+"Pin Tab" = "固定标签页";
+"Pin Tab as Row" = "将标签页固定为横排";
+"Show Pin as Square" = "固定项显示为方块";
+"Show Pin as Row" = "固定项显示为横排";
+
+/* g8-tabs.strings */
+"Change Letter" = "更改字母";
+
+/* g2-app.strings */
+"Unpin Tab" = "取消固定标签页";
+"Edit Bookmark…" = "编辑书签…";
+"Recently Visited" = "最近访问";
+"Recently Closed" = "最近关闭";
+"Send Feedback…" = "发送反馈…";
+"Checking for Updates…" = "正在检查更新…";
+"Check for Updates…" = "检查更新…";
+"Install Update" = "安装更新";
+"Downloading Update…" = "正在下载更新…";
+"Restart to Update" = "重新启动以更新";
+"Download Update…" = "下载更新…";
+"Click anything to hide it   ⌘Z undo   esc done" = "点击任意元素即可隐藏   ⌘Z 撤销   esc 完成";
+"Importing %@, %@" = "正在导入 %@，%@";
+
+/* g3-panels.strings */
+"%@ of %@" = "%@ / %@";
+
+/* g8-tabs.strings */
+"Cancelling…" = "正在取消…";
+
+/* g3-panels.strings */
+"Show in Finder" = "在访达中显示";
+
+/* g2-app.strings */
+"%@ wants to know your location" = "%@ 想获取你的位置";
+"%@ wants to send you notifications" = "%@ 想给你发送通知";
+"%@ wants to use your %@" = "%@ 想使用你的%@";
+"Allow once" = "允许一次";
+
+/* g5-extensions.strings */
+"Allow" = "允许";
+
+/* g2-app.strings */
+"Always allow" = "始终允许";
+"Don't allow" = "不允许";
+"Update the password for %@ on %@?" = "要更新 %@ 在 %@ 上的密码吗？";
+"Save this password for %@?" = "要为 %@ 存储此密码吗？";
+"Save the password for %@ on %@?" = "要存储 %@ 在 %@ 上的密码吗？";
+"Update" = "更新";
+"Not now" = "以后再说";
+"Never here" = "此网站不再提示";
+
+/* g8-tabs.strings */
+"OK" = "好";
+
+/* g2-app.strings */
+"Choose a file for this page" = "为此页面选取文件";
+"Choose a file for %@" = "为 %@ 选取文件";
+"%@ can't prove who it is" = "%@ 无法证明自己的身份";
+"Its certificate isn't trusted by this Mac. Someone could be reading what you send. Continue only if you know why it looks like this." = "此 Mac 不信任它的证书。别人可能正在读取你发送的内容。只有当你清楚为何如此时才继续。";
+"Go Back" = "返回";
+"Continue Anyway" = "仍然继续";
+"%@ asks you to sign in" = "%@ 要求你登录";
+"The site wants a name and a password." = "此网站需要名称和密码。";
+"\nThat wasn't accepted — try again." = "\n未被接受 — 请重试。";
+"Sign In" = "登录";
+
+/* g9-spaces.strings */
+"Name" = "名称";
+
+/* g6-passwords.strings */
+"Password" = "密码";
+
+/* g8-tabs.strings */
+"This page says" = "此页面显示";
+
+/* g2-app.strings */
+"Window" = "窗口";
+"Search feedback — %@ (%@)" = "Search 反馈 — %@ (%@)";
+"Open Image in New Tab" = "在新标签页中打开图像";
+"Copy Image" = "拷贝图像";
+"Download Image" = "下载图像";
+"Copy Image Address" = "拷贝图像地址";
+"Couldn't copy that image" = "无法拷贝该图像";
+"Image copied" = "已拷贝图像";
+"This page is playing in the floating window." = "此页面正在浮动窗口中播放。";
+"Even Out" = "均分";
+"Separate" = "分离";
+"Close Both" = "关闭两个页面";
+"Divider between the pages" = "页面之间的分隔条";
+"Close (esc)" = "关闭 (esc)";
+"Open as a tab (⌘↩)" = "作为标签页打开 (⌘↩)";
+"Keep beside this page (⌥⌘↩)" = "保留在此页面旁 (⌥⌘↩)";
+"Open in Search" = "在 Search 中打开";
+"Open in Search   ⌘O" = "在 Search 中打开   ⌘O";
+"Not secure — %@" = "不安全 — %@";
+"Extension page" = "扩展页面";
+"Not a website" = "不是网站";
+"Couldn't build the block list" = "无法构建拦截列表";
+"WebKit has nowhere to compile it" = "WebKit 找不到编译该列表的位置";
+"Compiling the block list failed" = "编译拦截列表失败";
+
+/* g8-tabs.strings */
+"This page" = "此页面";
+
+/* g3-panels.strings */
+"Nothing is hidden here." = "此处没有隐藏的内容。";
+"Hidden on this site — rest on a line to see it" = "已在此网站上隐藏 — 将指针停在一行上即可查看";
+"Hide something…" = "隐藏内容…";
+"Restore all" = "全部恢复";
+"Restore" = "恢复";
+"Find on page" = "在页面中查找";
+"Type text to search this page. Press Return to find the next match." = "输入文本以在此页面中查找。按下 Return 键可查找下一个匹配项。";
+"Previous match" = "上一个匹配项";
+"Find the previous match." = "查找上一个匹配项。";
+"Next match" = "下一个匹配项";
+"Find the next match." = "查找下一个匹配项。";
+"Match case" = "区分大小写";
+"Match uppercase and lowercase letters exactly." = "完全匹配字母的大小写。";
+"Whole words" = "全字匹配";
+"Match complete words. This option is unavailable for PDF pages." = "匹配完整的单词。PDF 页面不支持此选项。";
+"Search options" = "搜索选项";
+"Choose whether to match case or whole words." = "选取是区分大小写还是匹配全字。";
+"Close Find on Page" = "关闭“在页面中查找”";
+"Close the find field and clear its selection." = "关闭查找栏并清除其选择内容。";
+
+/* g8-tabs.strings */
+"Match found" = "找到匹配项";
+"No matches" = "无匹配项";
+"Search unavailable" = "搜索不可用";
+"Whole words unavailable" = "无法使用全字匹配";
+
+/* g3-panels.strings */
+"on screen" = "在屏幕上";
+"pinned" = "已固定";
+"a bench tab" = "脚本打开的标签页";
+"blank" = "空白页";
+"already asleep" = "已休眠";
+"no page" = "没有页面";
+"still loading" = "仍在载入";
+"playing sound" = "正在播放声音";
+"its video is out" = "其视频正在浮动";
+"on a call" = "正在通话";
+"recording the screen" = "正在录制屏幕";
+"downloading" = "正在下载";
+"a question waiting" = "有待回答的询问";
+"the page on screen came from it" = "屏幕上的页面由它打开";
+"holding something typed" = "有已输入但未发送的内容";
+"Reading bookmark file" = "正在读取书签文件";
+"Parsing bookmarks" = "正在解析书签";
+"Search everywhere you have been" = "搜索你去过的所有地方";
+"Nothing yet." = "暂无内容。";
+
+/* g6-passwords.strings */
+"Nothing matches." = "没有匹配项。";
+
+/* g3-panels.strings */
+"1 page" = "1 个页面";
+"%lld pages" = "%lld 个页面";
+"Clear…" = "清除…";
+"Everywhere you have been" = "你去过的所有地方";
+"Today" = "今天";
+"Yesterday" = "昨天";
+"Nothing downloaded yet." = "尚未下载任何内容。";
+"Current downloads" = "当前下载";
+"Completed" = "已完成";
+"Files land in %@" = "文件保存在 %@";
+"Clearing the list leaves the files where they are" = "清除列表不会移动文件";
+"Clear list" = "清除列表";
+"%@ downloaded" = "已下载 %@";
+"Downloading" = "正在下载";
+"Pausing…" = "正在暂停…";
+
+/* g8-tabs.strings */
+"Paused" = "已暂停";
+
+/* g3-panels.strings */
+"Resuming…" = "正在继续…";
+"Failed" = "失败";
+"The download failed." = "下载失败。";
+"Pause" = "暂停";
+"Resume" = "继续";
+"Retry" = "重试";
+"Start the download again from the beginning" = "从头开始重新下载";
+
+/* g8-tabs.strings */
+"Bookmarked" = "已加书签";
+
+/* g3-panels.strings */
+"Folder" = "文件夹";
+"Done" = "完成";
+"No bookmarks yet" = "尚无书签";
+"Search bookmarks" = "搜索书签";
+"Nothing kept yet. Add this page with ⇧⌘B, or bring yours in below." = "尚未保存任何内容。按 ⇧⌘B 添加此页面，或在下方导入已有书签。";
+
+/* g6-passwords.strings */
+"Bring in from" = "导入来源";
+"Bring in…" = "导入…";
+"File…" = "文件…";
+
+/* g3-panels.strings */
+"New Folder…" = "新建文件夹…";
+"New Folder" = "新建文件夹";
+"New Folder Inside…" = "在其中新建文件夹…";
+"Folder name" = "文件夹名称";
+"Make" = "创建";
+"Create" = "创建";
+"Rename Folder" = "重命名文件夹";
+"Rename Bookmark" = "重命名书签";
+
+/* g9-spaces.strings */
+"Rename" = "重命名";
+
+/* g3-panels.strings */
+"Rename…" = "重命名…";
+"Move to" = "移动到";
+"Top Level" = "顶层";
+"Top level" = "顶层";
+
+/* g8-tabs.strings */
+"Open" = "打开";
+
+/* g3-panels.strings */
+"Empty" = "无";
+
+/* g4-welcome.strings */
+"1 bookmark" = "1 个书签";
+"%lld bookmarks" = "%lld 个书签";
+
+/* g3-panels.strings */
+"Show in Folder" = "在访达中显示";
+"Edit This Bookmark…" = "编辑此书签…";
+"Manage Bookmarks…" = "管理书签…";
+"The empty folders in it go too." = "其中的空文件夹也会一并移除。";
+"The bookmark in it goes too." = "其中的书签也会一并移除。";
+"The %lld bookmarks in it go too." = "其中的 %lld 个书签也会一并移除。";
+
+/* g5-extensions.strings */
+"Remove “%@”?" = "要移除“%@”吗？";
+
+/* g4-welcome.strings */
+"A browser with nothing in the way. Four megabytes, the engine already in your Mac, and as little around the page as we could manage." = "一个不挡路的浏览器。四兆大小，引擎已在你的 Mac 中，页面周围能省则省。";
+"Bring things over." = "导入原有的数据。";
+"Passwords go into your keychain, bookmarks into the menu, and history means the address field already knows where you go. Nothing in the other browser changes." = "密码进入你的钥匙串，书签进入菜单，历史记录让地址栏已经知道你要去哪里。另一个浏览器中的内容不会改变。";
+"No other browser found on this Mac — nothing to bring." = "这台 Mac 上没找到其他浏览器——没有可导入的内容。";
+"%@ is on this Mac, but nothing of it was found in %@." = "%@ 在这台 Mac 上，但在 %@ 中没找到它的任何内容。";
+"From %@" = "来自 %@";
+"macOS will ask once for that browser's keychain key" = "macOS 会询问一次该浏览器的钥匙串密钥";
+"Folders and all, behind the bookmark button" = "包含文件夹，收在书签按钮下";
+"The last few thousand places, for finishing addresses" = "最近几千条记录，用于补全地址";
+"Bringing…" = "正在导入…";
+"Bring them in" = "开始导入";
+"From a file another browser exported…" = "从其他浏览器导出的文件…";
+"Two ways to hold it." = "两种摆放方式。";
+"Titles across the top, or down the side. The grey slides to the tab you pick either way, and you can change your mind with ⇧⌘S." = "标题横向排在顶部，或沿侧边向下。两种方式下灰色都会滑向你选的标签页，随时可用 ⇧⌘S 改变主意。";
+"Tab strip" = "标签栏";
+"Sidebar" = "侧栏";
+"Tabs wear" = "标签页样式";
+"Links from other apps." = "来自其他 App 的链接。";
+"A click in Mail, in Slack, in a PDF — macOS sends it to whichever browser is the default. It can be this one." = "在邮件、Slack 或 PDF 中点击链接——macOS 会把它交给默认浏览器。可以是这一个。";
+"Make Search the default" = "把 Search 设为默认浏览器";
+"Search is the default browser" = "Search 是默认浏览器";
+"macOS asks in its own dialog" = "macOS 会用自己的对话框询问";
+"A few things worth knowing" = "几件值得知道的事";
+"A new tab. Type a place, or words to search." = "新建标签页。输入网址，或要搜索的词。";
+"Every open tab, by name." = "按名称列出所有打开的标签页。";
+"Settings, including passwords and updates." = "设置，包括密码和更新。";
+"Spaces: separate tabs and sign-ins. Turn them on in Settings › Tabs." = "空间：彼此独立的标签页与登录状态。在设置 › 标签页中开启。";
+"Split a page in two; ⌃⌘← and ⌃⌘→ go from one page to the other. Turn Split View on in Settings › Tabs." = "把一个页面分成两半；⌃⌘← 和 ⌃⌘→ 在两页之间切换。在设置 › 标签页中开启分屏。";
+"Links from other apps can open in a small window. Settings › General." = "来自其他 App 的链接可以在小窗口中打开。设置 › 通用。";
+"AI summaries and questions about a page — off until you turn it on in Settings › AI." = "AI 摘要与关于页面的提问——在设置 › AI 中开启前一直关闭。";
+"Skip" = "跳过";
+
+/* g7-ai.strings */
+"Continue" = "继续";
+
+/* g4-welcome.strings */
+"Start browsing" = "开始浏览";
+
+/* g6-passwords.strings */
+"%lld passwords" = "%lld 个密码";
+
+/* g4-welcome.strings */
+"passwords: macOS didn't hand over the key — allow it and try again" = "密码：macOS 没有交出密钥——允许后再试一次";
+"passwords: %@ has a primary password — export them from it and bring in the CSV" = "密码：%@ 设了主密码——从它导出后再导入 CSV";
+"passwords: nothing readable" = "密码：没有可读取的内容";
+"%lld places" = "%lld 条记录";
+"New in Search %@" = "Search %@ 的新功能";
+"What's New" = "更新内容";
+"Everything that's new…" = "所有新内容…";
+"From earlier versions, in case you missed them" = "来自更早的版本，以免错过";
+"Close" = "关闭";
+"New" = "新增";
+"Better" = "改进";
+"Fixed" = "修复";
+"AI on pages" = "页面上的 AI";
+"Summarize a page or ask about it. Choose where it runs in Settings › AI." = "总结页面或就页面提问。在设置 › AI 中选择它的运行位置。";
+"Two tabs side by side: drag a tab to the edge of a page, or press ⌥⌘N." = "两个标签页并排：把标签页拖到页面边缘，或按 ⌥⌘N。";
+"The start of a site's name, then Tab: red, Tab, and your words search Reddit." = "先输入网站名的开头，再按 Tab：red，Tab，你的词就在 Reddit 中搜索。";
+"Your pinned tabs, and none of last time's others." = "只保留固定的标签页，不带上次的其他标签页。";
+"Named sections of tabs. Right-click a tab to start one." = "有名字的标签页分区。右键点一个标签页即可新建。";
+"Sidebar on the right" = "侧栏在右侧";
+"The tabs down the right edge of the window." = "标签页沿窗口右边缘排列。";
+"Videos don't start by themselves, even without sound." = "视频不会自行开始，即使没有声音。";
+"Your downloads one click away, beside the other buttons." = "下载就在其他按钮旁边，一键可达。";
+"Separate sets of tabs, each with its own sign-ins. ⌃1–⌃9 to switch." = "各自独立的标签页集合，各有各的登录状态。⌃1–⌃9 切换。";
+"A sidebar that hides" = "会隐藏的侧栏";
+"The page takes the whole window; the tabs come out at the edge." = "页面占满整个窗口；标签页从边缘滑出。";
+"Bookmarks bar" = "书签栏";
+"Your bookmarks in a row above the page." = "书签排在页面上方一行。";
+"A playing video follows you out into a small window." = "正在播放的视频会跟随你进入一个小窗口。";
+"Smoother scrolling and animations on screens that can. Uses more battery." = "在支持的屏幕上滚动与动画更顺滑。更耗电。";
+"Click the wheel, then move the mouse to scroll, as on Windows." = "按下滚轮，再移动鼠标即可滚动，与 Windows 上一样。";
+"27 September 2026" = "2026年9月27日";
+"24 September 2026" = "2026年9月24日";
+"23 September 2026" = "2026年9月23日";
+"Several windows, and a lot to discover. Most of what's new is off until you turn it on, and the card after the update offers it." = "多个窗口，还有不少新东西。大部分新功能默认关闭，更新后的卡片会提示你开启。";
+"Several windows. ⌘N opens one with its own tabs; drag a tab out of the row, or use Move to Window in its menu, and it moves with its page as it is. Pinned tabs are the same in every window." = "多个窗口。⌘N 打开的窗口有自己的标签页；把标签页拖出标签栏，或用它菜单里的「移到窗口」，它会带着当前页面一起过去。固定的标签页在每个窗口中都相同。";
+"Tab groups, and a sidebar on the right." = "标签组，以及右侧的侧栏。";
+"⌃Tab shows your recent tabs as pictures, the last one first: a quick ⌃Tab goes back to the tab you were on." = "⌃Tab 以图片显示最近的标签页，最近的在前：快速按一下 ⌃Tab 就回到刚才所在的标签页。";
+"Your own keyboard shortcuts, in Settings › Shortcuts." = "自定键盘快捷键，在设置 › 快捷键中。";
+"Downloads show while they happen: a small circle fills beside the other buttons, and the Finder and the Dock show the progress too. The button can stay there for good." = "下载进行中会显示进度：其他按钮旁的小圆环会填充，访达和程序坞也会显示进度。这个按钮可以一直留在那里。";
+"Bring things over from Firefox, Zen, Helium, Comet, Opera, Chrome's other channels and Arc, its spaces and pinned tabs included, or from an exported file." = "可以从 Firefox、Zen、Helium、Comet、Opera、Chrome 的其他通道和 Arc 导入数据，包括它的空间和固定标签页，也可以从导出的文件导入。";
+"Site shortcuts: a word of your own before a search sends it to that site, like yt cats to YouTube." = "网站快捷搜索：搜索前加上你自己的词，就会把搜索发给那个网站，例如 yt cats 在 YouTube 中搜索。";
+"Bookmarks in the order you choose, folders of your own, and a card to name a bookmark as you add it." = "书签按你选择的顺序排列，可以自建文件夹，添加书签时有卡片让你命名。";
+"Videos can wait for a click, and every site can start at a zoom of your choice." = "视频可以等待点击，每个网站都能以你选定的缩放比例打开。";
+"A double-click on a pinned tab takes it back to the page it was pinned at." = "双击固定的标签页，会回到它被固定时所在的页面。";
+"Hold a back or forward swipe to pick a page from history." = "按住后退或前进的轻扫手势，可以从历史记录中挑选页面。";
+"Scrolling asks far less of the window, and a tab still loading no longer keeps the Mac busy." = "滚动对窗口的负担小得多，仍在载入的标签页不再让 Mac 忙个不停。";
+"Where links go, peeking at a link with a shift-click, and flicking the floating video to a corner are now on." = "链接的打开位置、按住 Shift 点击预览链接、把浮动视频甩到角落，现在都已开启。";
+"Tab managers and other extensions see every tab, in every window." = "标签页管理器和其他扩展能看到每个窗口中的每个标签页。";
+"Window › Move & Resize and the Mac's tiling work with Search's window." = "「窗口 › 移动与调整大小」和 Mac 的平铺功能可用于 Search 的窗口。";
+"⌘K always opens the list of your tabs, whatever the page." = "无论当前是什么页面，⌘K 总能打开标签页列表。";
+"⌘← and ⌘→ go back and forward again." = "⌘← 和 ⌘→ 重新可以后退和前进。";
+"Links from Notion and other apps bring Search to the front." = "来自 Notion 和其他 App 的链接会把 Search 带到前台。";
+"Addresses a dev server prints, like 0.0.0.0:3000, open." = "开发服务器打印的地址（如 0.0.0.0:3000）可以打开。";
+"The tabs you had at quit are the ones that come back." = "退出时有哪些标签页，回来时就是哪些。";
+"The × closes a tab in the tab bar folded away with ⌘S." = "用 ⌘S 收起标签栏后，× 也能关闭标签页。";
+"1Password, Bitwarden, NordPass, Passbolt, iCloud Passwords and the Claude extension each get their fixes." = "1Password、Bitwarden、NordPass、Passbolt、iCloud 密码和 Claude 扩展各自得到修复。";
+"And many smaller fixes." = "以及许多更小的修复。";
+"Security, and the mouse wheel." = "安全性，以及鼠标滚轮。";
+"Copying a saved password asks for Touch ID." = "拷贝已存储的密码需要 Touch ID。";
+"A mouse wheel scrolls smoothly again on x.com and pages like it." = "在 x.com 及类似页面上，鼠标滚轮重新顺滑。";
+"History opens at once." = "历史记录立即打开。";
+"Music keeps playing when you switch spaces." = "切换空间时音乐继续播放。";
+"Pop-ups need a click." = "弹出式窗口需要点击才会打开。";
+"The holes found in this week's reviews: an extension could read files outside its own folder, and a page or an ad could open another app without asking." = "本周审查中发现的漏洞：扩展可以读取自己文件夹之外的文件，页面或广告可以不询问就打开其他 App。";
+"Bitwarden signs in to a self-hosted server, and extension popups hear what changes while they're open." = "Bitwarden 可以登录自托管的服务器，扩展弹出窗口在打开期间能收到变化。";
+"A link from Mail brings Search to the front, and a full-screen video no longer goes black." = "来自邮件的链接会把 Search 带到前台，全屏视频不再变黑。";
+"Your extensions may each ask once more for their permissions at their next update." = "你的扩展在下次更新时，可能各自再询问一次权限。";
+"Passkeys, password managers and Google." = "通行密钥、密码管理器和 Google。";
+"A site's passkey button brings up the Mac's own passkey sheet: Touch ID, your iPhone, a security key." = "网站的通行密钥按钮会调出 Mac 自己的通行密钥面板：Touch ID、你的 iPhone、安全密钥。";
+"Search can be the Mac's default browser." = "Search 可以成为这台 Mac 的默认浏览器。";
+"Each off until you turn it on in Settings: a bookmarks bar, a peek at a link with a shift-click, the video that follows you to another app, pages at 120 Hz, and where a link goes." = "以下功能在设置中开启前都关闭：书签栏、按住 Shift 点击预览链接、跟随你到其他 App 的视频、120 Hz 页面，以及链接的打开位置。";
+"Mute a tab, share a page, copy a link as Markdown, the mouse's back and forward buttons, and spaces in the bar across the top." = "将标签页静音、共享页面、以 Markdown 拷贝链接、鼠标的后退和前进按钮，以及顶栏中的空间。";
+"Faster to open, and new tabs in about 10 ms." = "打开更快，新建标签页约需 10 毫秒。";
+"Pages see nothing of Search that Safari doesn't show them, and a saved password is offered only on its own site." = "Search 向网页透露的信息不多于 Safari，已存储的密码只在其所属网站上提供。";
+"1Password, Bitwarden and Proton Pass." = "1Password、Bitwarden 和 Proton Pass。";
+"If passkeys still fail after the update, restart your Mac once." = "如果更新后通行密钥仍然失败，重启一次 Mac。";
+"The first update, made of a day of your replies and pull requests." = "第一次更新，由你们一天的回复和拉取请求构成。";
+"Each off until you turn it on in Settings: Spaces, a sidebar that hides until the pointer reaches the edge, and the search engine of your choice." = "以下功能在设置中开启前都关闭：空间、指针到达边缘才出现的侧栏，以及你选择的搜索引擎。";
+"⌘S folds the sidebar away, a middle-click closes a tab, a tab can be renamed, and the Web Inspector is in the View menu." = "⌘S 收起侧栏，中键点击关闭标签页，标签页可以重命名，网页检查器在「显示」菜单中。";
+"Search opens again on macOS 14." = "Search 在 macOS 14 上重新可以打开。";
+"Signing in to Google no longer reloads the page over and over with iCloud Passwords installed." = "安装 iCloud 密码后，登录 Google 不再反复重新加载页面。";
+"⌘1–⌘9 on every keyboard layout, Tab between a form's fields, dragging tabs, a double-click along the top to fill the screen, and the Mac's beep while typing." = "修好了：所有键盘布局上的 ⌘1–⌘9、表单字段间的 Tab、拖动标签页、双击顶部填满屏幕，以及输入时 Mac 的提示音。";
+"The first version. A browser for the Mac with nothing in the way." = "第一个版本。为 Mac 做的不挡路的浏览器。";
+"Tabs in a row or down the side, pinned tabs that keep their place, and one field for addresses and searches." = "标签页排成一行或沿侧边排列，固定的标签页保持位置，地址与搜索共用一个输入框。";
+"Ads blocked before they load; passwords and passkeys in your keychain." = "广告在载入前就被拦截；密码和通行密钥存在你的钥匙串中。";
+"Anything on a page can be hidden; articles open in a reading mode and videos float." = "页面上的任何内容都可以隐藏；文章以阅读模式打开，视频可以浮动。";
+"Chrome extensions from the Chrome Web Store, on macOS 15.4 or later." = "来自 Chrome 应用商店的 Chrome 扩展，需要 macOS 15.4 或更高版本。";
+"Tabs you haven't looked at for half an hour sleep and give their memory back." = "半小时没看过的标签页会休眠，把内存还回来。";
+"It runs on the engine already in macOS and weighs 2.9 MB." = "它运行在 macOS 已有的引擎上，只有 2.9 MB。";
+"Nothing in the other browser changes. Passwords go into your keychain." = "另一个浏览器中的内容不会改变。密码进入你的钥匙串。";
+"Looking on this Mac…" = "正在查找这台 Mac…";
+"No other browser found on this Mac." = "这台 Mac 上没有找到其他浏览器。";
+"On this Mac" = "在这台 Mac 上";
+"Show bookmarks" = "显示书签";
+"Show passwords" = "显示密码";
+"Safari — macOS keeps its data from other apps: in Safari, File › Export Browsing Data, then bring the file in below." = "Safari——macOS 不让其他 App 读取它的数据：在 Safari 中，文件 › 导出浏览数据，然后在下方导入该文件。";
+"Brought before" = "之前导入过";
+"Profile" = "配置文件";
+"Most recent: %@" = "最近使用：%@";
+"All profiles" = "所有配置文件";
+"None in %@" = "%@ 中没有";
+"macOS asks once for %@'s keychain key" = "macOS 会询问一次 %@ 的钥匙串密钥";
+"Read from %@'s own files, unless it has a primary password" = "从 %@ 自己的文件中读取，除非它设了主密码";
+"In a “%@” folder, or at the top if you have none yet" = "放在「%@」文件夹中，如果你还没有文件夹则放在顶层";
+"Replace what came from %@ before" = "替换之前从 %@ 导入的内容";
+"Its bookmarks from %@ go, and these come fresh; passwords only ever add" = "它从 %@ 导入的书签会被移除，这些会全新导入；密码只增不减";
+"Nothing recorded from %@ yet — only what is new comes" = "还没有从 %@ 导入的记录——只会导入新增内容";
+"The last %@ places" = "最近 %@ 条记录";
+"Spaces and pinned tabs" = "空间与固定的标签页";
+"1 space" = "1 个空间";
+"%lld spaces" = "%lld 个空间";
+"%@, %lld pinned — each a space here, its pinned tabs asleep in it, the favourites as pins" = "%@，%lld 个固定项——每个空间在这里都会变成一个空间，它固定的标签页在其中休眠，收藏则成为固定项";
+"%lld found — installed fresh from the Chrome Web Store, you say yes to each one" = "找到 %lld 个——从 Chrome 应用商店全新安装，每一个都需要你同意";
+"Counting…" = "正在统计…";
+"%@ bookmarks" = "%@ 个书签";
+"1 place" = "1 条记录";
+"%@ places" = "%@ 条记录";
+
+/* g6-passwords.strings */
+"1 password" = "1 个密码";
+
+/* g4-welcome.strings */
+"%@ passwords" = "%@ 个密码";
+"%lld profiles" = "%lld 个配置文件";
+"brought %@" = "已导入 %@";
+"Nothing to bring in" = "没有可导入的内容";
+"1 pinned tab" = "1 个固定的标签页";
+"%@ pinned tabs" = "%@ 个固定的标签页";
+"Nothing new" = "没有新内容";
+"%@, %@" = "%@，%@";
+"%@, %@, %@" = "%@，%@，%@";
+" (%@ skipped: no address)" = "（跳过 %@ 个：没有地址）";
+"macOS didn't hand over %@'s key — allow it and try again" = "macOS 没有交出 %@ 的密钥——允许后再试一次";
+"%@ has a primary password: export your passwords from it and bring in the CSV file" = "%@ 设了主密码：从它导出密码，然后导入 CSV 文件";
+"No passwords readable in %@" = "%@ 中没有可读取的密码";
+"Couldn't read all of %@'s bookmarks: what came from it before was kept, %@ new" = "无法读取 %@ 的全部书签：之前从它导入的内容已保留，新增 %@ 个";
+
+/* g8-tabs.strings */
+"No bookmarks in %@" = "%@ 中没有书签";
+
+/* g4-welcome.strings */
+"%@ new bookmarks, %@ already here" = "新增 %@ 个书签，已有 %@ 个";
+"1 extension to confirm" = "1 个扩展待确认";
+"%lld extensions to confirm" = "%lld 个扩展待确认";
+"Arc's spaces and pins were all here already" = "Arc 的空间和固定项这里都已有";
+"1 new space" = "1 个新空间";
+"%@ new spaces" = "%@ 个新空间";
+"1 pin" = "1 个固定项";
+"%@ pins" = "%@ 个固定项";
+"%@: Files read" = "%@：文件已读取";
+"%@: Scanning folders" = "%@：正在扫描文件夹";
+"%@: %@" = "%@：%@";
+"%@: Reading CSV" = "%@：正在读取 CSV";
+"%@: File complete" = "%@：文件完成";
+"%@: Reading history" = "%@：正在读取历史记录";
+"%@: Parsing history" = "%@：正在解析历史记录";
+"%@: Extracting ZIP" = "%@：正在解压 ZIP";
+"%@: ZIP extracted" = "%@：ZIP 已解压";
+"Search %@ is ready — relaunch to use it" = "Search %@ 已就绪——重新启动即可使用";
+"Checking for updates…" = "正在检查更新…";
+"Search is up to date" = "Search 已是最新版本";
+"Search %@ is out — choose Install Update in the Search menu" = "Search %@ 已发布——在 Search 菜单中选取「安装更新」";
+"Downloading Search %@…" = "正在下载 Search %@…";
+"Search %@ is ready — it's there the next time you open it" = "Search %@ 已就绪——下次打开时就会是它";
+"Search %@ is out — choose Download Update in the Search menu" = "Search %@ 已发布——在 Search 菜单中选取「下载更新」";
+"That download didn't check out — get Search from officecommun.com/search" = "那次下载没有通过校验——可前往 officecommun.com/search 获取 Search";
+
+/* g5-extensions.strings */
+"Already installed" = "已安装";
+"Already installed. Press Reload to take its changes" = "已安装。按下“重新加载”以应用更改";
+"That folder has no manifest.json" = "该文件夹中没有 manifest.json";
+"Load Extension" = "载入扩展";
+"Choose the folder that holds the extension's manifest.json." = "选择包含该扩展 manifest.json 的文件夹。";
+"Couldn't install the extension: %@" = "无法安装该扩展：%@";
+"The folder %@ was loaded from is gone" = "载入 %@ 时所用的文件夹已不存在";
+"%@ wasn't reloaded — its folder now leads somewhere else" = "%@ 未重新加载，其文件夹现在指向别处";
+"Couldn't copy %@ again: %@" = "无法再次拷贝 %@：%@";
+"%@ wasn't reloaded — its manifest couldn't be read" = "%@ 未重新加载，无法读取其 manifest";
+"%@ wasn't reloaded — it asks for more than before" = "%@ 未重新加载，它请求的权限比之前更多";
+"Couldn't replace %@: %@" = "无法替换 %@：%@";
+"%@ reloaded" = "%@ 已重新加载";
+"%@ couldn't start — see Settings › Extensions" = "%@ 无法启动，详见“设置”›“扩展”";
+"%@ is installed" = "%@ 已安装";
+"%@ is installed, but WebKit couldn't start it" = "%@ 已安装，但 WebKit 无法启动它";
+"Add “%@” to Search?" = "要将“%@”添加到 Search 吗？";
+"An update to %@" = "%@ 的更新";
+"It doesn't ask for anything special." = "它没有请求任何特殊权限。";
+"It will be able to:\n• %@" = "它将可以：\n• %@";
+"Add Extension" = "添加扩展";
+"%@ asks for more access" = "%@ 请求更多访问权限";
+
+/* g8-tabs.strings */
+"An extension" = "某个扩展";
+
+/* g5-extensions.strings */
+"“%@” wants to record your screen or a window." = "“%@”想要录制您的屏幕或某个窗口。";
+"macOS will ask what to share. Search remembers your answer for %@; Settings › Extensions takes it back." = "macOS 会询问要共享的内容。Search 会记住您对 %@ 的回答；可在“设置”›“扩展”中撤销。";
+"Don't Allow" = "不允许";
+"%@ wants to read and change %@" = "%@ 想要读取并更改%@的内容";
+"every website" = "所有网站";
+"Until you remove the extension." = "直到您移除该扩展。";
+"Show “%@” in new tabs?" = "要在新标签页中显示“%@”吗？";
+"It asked to replace the new tab page. You can change this later in Settings › Extensions." = "它请求替换新标签页。您可以稍后在“设置”›“扩展”中更改。";
+"Keep It" = "保留";
+"Its settings and data go with it." = "它的设置和数据会一并移除。";
+"Read and change everything on every website" = "读取并更改所有网站上的全部内容";
+"Read and change what's on %@" = "读取并更改 %@ 上的内容";
+"Read and change what's on %@ and %lld more" = "读取并更改 %@ 以及另外 %lld 个网站上的内容";
+"Run scripts you add to it on websites" = "在网站上运行您添加的脚本";
+"Read and change your history" = "读取并更改您的历史记录";
+"Read and change your bookmarks" = "读取并更改您的书签";
+"Manage your downloads" = "管理您的下载";
+"Change your privacy settings" = "更改您的隐私设置";
+"Clear your browsing data" = "清除您的浏览数据";
+"See your other extensions" = "查看您的其他扩展";
+"Show notifications" = "显示通知";
+"See your recently closed tabs" = "查看您最近关闭的标签页";
+"See your most visited sites" = "查看您访问最多的网站";
+"Read and change your reading list" = "读取并更改您的阅读列表";
+"Open files it downloads" = "打开它下载的文件";
+"Record your screen or a window, when you choose what to share" = "在您选择共享内容时，录制您的屏幕或某个窗口";
+"Record a tab, when you ask it to" = "在您要求时录制某个标签页";
+"See your open tabs and their addresses" = "查看您打开的标签页及其地址";
+"Read and change cookies" = "读取并更改 Cookie";
+"See where you go" = "查看您的浏览轨迹";
+"See the requests pages make" = "查看网页发出的请求";
+"Block or change requests pages make" = "拦截或更改网页发出的请求";
+"Write to the clipboard" = "写入剪贴板";
+"Talk to apps on this Mac" = "与此 Mac 上的 App 通信";
+"Run scripts in pages" = "在网页中运行脚本";
+
+/* g8-tabs.strings */
+"Unpin" = "取消固定";
+
+/* g5-extensions.strings */
+"Pin to Toolbar" = "固定到工具栏";
+"Pin to toolbar" = "固定到工具栏";
+"Options" = "选项";
+"Options…" = "选项…";
+"Reload" = "重新加载";
+"Remove “%@”…" = "移除“%@”…";
+"Reload from its folder" = "从所在文件夹重新加载";
+"None of your extensions is on" = "您的扩展均未开启";
+"Chrome Web Store…" = "Chrome 应用商店…";
+"Load Unpacked…" = "载入已解压的扩展…";
+"Manage Extensions…" = "管理扩展…";
+"Chrome extensions" = "Chrome 扩展";
+"Need macOS 15.4 or later — the version whose WebKit can run them." = "需要 macOS 15.4 或更高版本 — 该版本的 WebKit 才能运行它们。";
+"Add from the Chrome Web Store" = "从 Chrome 应用商店添加";
+"Open the Store" = "打开商店";
+"Paste a link to an extension, or its id" = "粘贴扩展的链接或其 ID";
+"Or find it in the store and press Add to Search on its page." = "或在商店中找到它，并在其页面上按下“添加到 Search”。";
+"From another browser" = "从其他浏览器";
+"What Chrome, Arc, Brave and the others added from the Chrome Web Store — installed fresh from the store, you say yes to each one" = "Chrome、Arc、Brave 等浏览器从 Chrome 应用商店添加的扩展 — 会从商店全新安装，每一项都需要您确认";
+"Bring them over…" = "导入这些扩展…";
+"Allow on private tabs" = "允许在无痕标签页中使用";
+"Off by default - a private tab keeps nothing, extensions included" = "默认关闭 - 无痕标签页不保留任何内容，包括扩展";
+"No extensions yet." = "尚无扩展。";
+"Load an unpacked extension" = "载入已解压的扩展";
+"A folder with a manifest.json — your own, or one exported from another browser. Reload picks up what you've changed in it since." = "包含 manifest.json 的文件夹 — 可以是您自己制作的，或从其他浏览器导出的。重新加载会应用您此后在其中的更改。";
+
+/* g7-ai.strings */
+"Choose…" = "选择…";
+
+/* g5-extensions.strings */
+"Can record your screen — macOS asks what to share each time" = "可以录制您的屏幕 — macOS 每次都会询问要共享的内容";
+"More for %@" = "有关 %@ 的更多操作";
+"Stop Showing in New Tabs" = "停止在新标签页中显示";
+"Show in New Tabs" = "在新标签页中显示";
+"From “%@”" = "来自“%@”";
+"From a folder" = "来自文件夹";
+"Version %@" = "版本 %@";
+"Chrome Web Store" = "Chrome 应用商店";
+"couldn't start" = "无法启动";
+"shows in new tabs" = "显示在新标签页中";
+"%lld warning" = "%lld 个警告";
+"%lld warnings" = "%lld 个警告";
+"Adding…" = "正在添加…";
+"Add this extension to Search" = "将此扩展添加到 Search";
+"is sharing your screen" = "正在共享您的屏幕";
+"is recording your screen" = "正在录制您的屏幕";
+"is using your camera and microphone" = "正在使用您的摄像头和麦克风";
+"is using your camera" = "正在使用您的摄像头";
+"is using your microphone" = "正在使用您的麦克风";
+"A page" = "某个网页";
+"That isn't a Chrome Web Store link or extension id" = "这不是 Chrome 应用商店链接或扩展 ID";
+"The Chrome Web Store answered %lld" = "Chrome 应用商店返回了 %lld";
+"The Chrome Web Store has nothing for that id — it may have been taken down, or only exist for old versions of Chrome" = "Chrome 应用商店中没有该 ID 对应的内容 — 它可能已被下架，或只适用于旧版 Chrome";
+"What came back isn't a Chrome extension" = "返回的内容不是 Chrome 扩展";
+"The extension's signature doesn't hold up" = "该扩展的签名验证未通过";
+"The extension couldn't be unpacked" = "无法解压该扩展";
+"Couldn't replace extension at %@: %@" = "无法替换位于 %@ 的扩展：%@";
+
+/* g6-passwords.strings */
+"Search sites and accounts" = "搜索网站和账户";
+"Nothing kept yet. Sign in somewhere and say yes, or bring yours in below." = "尚未存储任何内容。在某个网站登录并确认存储，或从下方导入。";
+"macOS asks once for that browser's keychain key. Nothing is changed there; everything lands in your own keychain, under Search." = "macOS 只会询问一次那个浏览器的钥匙串密钥。那里不会有任何更改；所有内容都会存入你自己的钥匙串，归入 Search。";
+"%lld accounts" = "%lld 个账户";
+"No username" = "无用户名";
+"Show" = "显示";
+"Hide" = "隐藏";
+"Copy" = "拷贝";
+"Site" = "网站";
+"Username" = "用户名";
+"show the password for %@" = "显示 %@ 的密码";
+"Passkey" = "通行密钥";
+"No name" = "无名称";
+"Passkeys on this Mac" = "此 Mac 上的通行密钥";
+"From your keychain" = "来自你的钥匙串";
+"Reading password CSV…" = "正在读取密码 CSV…";
+
+/* g8-tabs.strings */
+"Saving passwords…" = "正在存储密码…";
+
+/* g6-passwords.strings */
+"The sign-in took too long — try again." = "登录用时过长 — 再试一次。";
+"The sign-in didn't come back from OpenRouter." = "OpenRouter 没有返回登录结果。";
+"This copy of Search can't keep keys (it isn't the signed release)." = "此 Search 副本无法保存密钥（它不是已签名的发行版本）。";
+"The keychain refused the key." = "钥匙串拒绝了该密钥。";
+"Signed in with OpenRouter" = "已通过 OpenRouter 登录";
+"The sign-in didn't work" = "登录失败";
+
+/* g7-ai.strings */
+"Summary" = "摘要";
+"About this page" = "关于此页面";
+"Ask about this page…" = "就此页面提问…";
+"Reading the page…" = "正在读取页面…";
+"AI — may be wrong · %@" = "AI 可能有误 · %@";
+"Answers from %@" = "回答来自 %@";
+"Close   esc" = "关闭   esc";
+"There's nothing on this page to read." = "此页面没有可读取的内容。";
+"This page has text written for an AI to follow. The answer may have been steered by it." = "此页面含有写给 AI 遵循的文字。回答可能受其引导。";
+"Not on the page: %@" = "页面上没有：%@";
+"on this Mac · %@" = "在本机 · %@";
+"on this Mac · %@ · %@" = "在本机 · %@ · %@";
+"sent to %@ · %@" = "发送至 %@ · %@";
+"%@, on this Mac" = "%@，在本机运行";
+"%@ isn't running, or has no model yet" = "%@ 未在运行，或还没有模型";
+"From %@ on this Mac" = "来自本机的 %@";
+"%@, on this Mac. Nothing leaves it" = "%@，在本机运行。不会有内容离开本机";
+"%@, downloaded once (%@) and checked. Nothing leaves this Mac" = "%@，下载一次（%@）并校验。不会有内容离开本机";
+"Downloading… %lld%%" = "正在下载… %lld%%";
+"Leave empty for %@" = "留空则使用 %@";
+"Asking %@…" = "正在询问 %@…";
+"Model" = "模型";
+"Needs the Apple Silicon version of Search — this copy runs translated" = "需要 Apple Silicon 版的 Search——此副本以转译方式运行";
+"Preparing it for this Mac — about twenty seconds, once" = "正在为此 Mac 做准备——约需二十秒，仅一次";
+"Try Again" = "重试";
+"Look Again" = "重新查找";
+"Use AI on pages" = "在页面上使用 AI";
+"Summarize a page, or ask about it, from the View menu. Nothing is sent until you ask" = "从「显示」菜单为页面生成摘要，或就页面提问。在你提问之前不会发送任何内容";
+"Where it runs" = "运行位置";
+"A provider you have a key with, or an app on this Mac" = "你有密钥的服务商，或本机上的 App";
+"Nothing leaves this Mac. Also in private tabs" = "不会有内容离开本机。无痕标签页中也可用";
+"Your key, kept in this Mac's keychain, sent only to %@. Never from a private tab" = "你的密钥保存在本机钥匙串中，仅发送至 %@。绝不会从无痕标签页发送";
+"Forget every key" = "忘记所有密钥";
+"Deletes them from this Mac's keychain. A key made by signing in with OpenRouter still works until you delete it on openrouter.ai" = "会从本机钥匙串删除这些密钥。通过 OpenRouter 登录创建的密钥仍然有效，直到你在 openrouter.ai 上将它删除";
+"Key" = "密钥";
+"%@, in this Mac's keychain" = "%@，位于本机钥匙串";
+"This copy of Search can't keep keys safely — it isn't the signed release. An app on this Mac still works" = "此副本的 Search 无法安全保管密钥——它不是签名版本。本机上的 App 仍可使用";
+"Paste one, or sign in and OpenRouter makes one for you" = "粘贴一个，或登录后由 OpenRouter 为你创建";
+"Paste your API key" = "粘贴你的 API 密钥";
+"Sign In…" = "登录…";
+"This copy of Search can't keep keys" = "此副本的 Search 无法保管密钥";
+"The key wasn't kept" = "密钥未能保存";
+"Key kept in the keychain" = "密钥已存入钥匙串";
+"Keys forgotten" = "已忘记密钥";
+"Choose where the AI runs" = "选择 AI 的运行位置";
+"Turn on AI in Settings › AI" = "在「设置 › AI」中开启 AI";
+"Choose a model for %@" = "为 %@ 选择模型";
+"No key for %@ yet" = "还没有 %@ 的密钥";
+"AI works on web pages" = "AI 只能用于网页";
+"In a private tab, only an AI on this Mac" = "在无痕标签页中，只能使用本机上的 AI";
+"The model isn't on this Mac yet" = "本机上还没有模型";
+"When you ask, Search sends this page's text, its address and your question to %@." = "提问时，Search 会把此页面的文字、其地址和你的问题发送至 %@。";
+"When you ask, Search sends this page's text, its address and your question to %@, which passes them to the model's provider." = "提问时，Search 会把此页面的文字、其地址和你的问题发送至 %@，由它转交给模型所属的服务商。";
+"Their terms and privacy policy apply. Nothing is sent until you ask, never from a private tab, and Search keeps no copy." = "适用它们的条款与隐私政策。在你提问之前不会发送任何内容，无痕标签页中绝不发送，Search 也不会保留副本。";
+"On Gemini's free tier, outside the EEA, Switzerland and the UK, Google may use this to improve its products, and people may read it. Don't use it on sensitive pages." = "在 Gemini 免费层级下，若不在欧洲经济区、瑞士和英国，Google 可能将其用于改进产品，并可能由人工审阅。不要在敏感页面上使用。";
+"Search asks OpenRouter to use only providers that keep nothing (zero data retention)." = "Search 要求 OpenRouter 仅使用不保留数据的服务商（零数据保留）。";
+"No key is kept for this provider." = "没有为这个服务商保存密钥。";
+"That address isn't the provider's." = "该地址不属于这个服务商。";
+"The provider answered %lld." = "服务商返回了 %lld。";
+"%@ (%lld)" = "%@（%lld）";
+"The provider's answer couldn't be read." = "无法读取服务商的回答。";
+"%@ isn't running on this Mac." = "%@ 未在本机运行。";
+"This Mac is offline." = "本机处于离线状态。";
+"%@ took too long to answer." = "%@ 的回答用时过长。";
+"The connection to %@ isn't secure." = "与 %@ 的连接不安全。";
+"%@ couldn't be reached." = "无法连接到 %@。";
+"The engine's signature doesn't hold up." = "引擎的签名验证未通过。";
+"The engine isn't installed." = "尚未安装引擎。";
+"The engine's signature doesn't hold up. Remove it in Settings › AI and download it again." = "引擎的签名验证未通过。请在「设置 › AI」中移除它并重新下载。";
+"The model isn't the one Search expects. Remove it in Settings › AI and download it again." = "该模型不是 Search 预期的模型。请在「设置 › AI」中移除它并重新下载。";
+"The engine didn't start." = "引擎未能启动。";
+"The engine couldn't be started." = "无法启动引擎。";
+"The engine stopped." = "引擎已停止。";
+"Not a secure address." = "不是安全地址。";
+"There isn't enough free space on this Mac (%@ needed)." = "本机可用空间不足（需要 %@）。";
+"The download was refused." = "下载被拒绝。";
+"What arrived isn't what was expected, so it was deleted." = "收到的内容与预期不符，已删除。";
+
+/* g8-tabs.strings */
+"Back   ⌘[" = "后退   ⌘[";
+"Forward   ⌘]" = "前进   ⌘]";
+"Stop   ⌘." = "停止   ⌘.";
+"Reload   ⌘R" = "重新加载   ⌘R";
+
+/* g9-spaces.strings */
+"Recording" = "正在录制";
+
+/* g8-tabs.strings */
+"Move to Group" = "移到分组";
+"New Group" = "新建分组";
+"Remove from Group" = "从分组中移除";
+"Pin" = "固定";
+"Pin as Row" = "固定为行";
+"Show as Square" = "显示为方块";
+"Show as Row" = "显示为行";
+"Back to Pinned Page" = "回到固定页面";
+"Move to Space" = "移到空间";
+"New Space…" = "新建空间…";
+"Pages moved to a Space with different sign-ins reopen there." = "移到登录状态不同的空间后，页面会在该空间重新打开。";
+"Open in Split View" = "在分屏中打开";
+"Move to New Window" = "移到新窗口";
+"Move to Window" = "移到窗口";
+"Duplicate" = "复制";
+"Site Information…" = "网站信息…";
+
+/* g9-spaces.strings */
+"Unmute Tab" = "取消静音标签页";
+"Mute Tab" = "静音标签页";
+
+/* g8-tabs.strings */
+"Put to Sleep" = "让标签页休眠";
+"Stays awake: %@" = "保持唤醒：%@";
+"Reopen Closed Group" = "重新打开关闭的分组";
+"Reopen Cleared Tab" = "重新打开已清除的标签页";
+"Reopen %lld Cleared Tabs" = "重新打开 %lld 个已清除的标签页";
+"Group name" = "分组名称";
+"Rename Group" = "重命名分组";
+"Expand Group" = "展开分组";
+"Collapse Group" = "折叠分组";
+"Ungroup Tabs" = "取消标签页分组";
+"Close Group" = "关闭分组";
+"Group %lld" = "分组 %lld";
+"Switch to %@" = "切换到 %@";
+"Selected" = "已选择";
+"Page" = "页面";
+"Click to focus this page" = "点按以聚焦此页面";
+"Focus page" = "聚焦页面";
+"Or bring in an open tab" = "或移入一个已打开的标签页";
+"Bring this tab into the split" = "将此标签页移入分屏";
+"Split tabs" = "分屏标签页";
+"Close the left page" = "关闭左侧页面";
+"Close the right page" = "关闭右侧页面";
+"Focused page" = "已聚焦的页面";
+"Click to focus this page; right-click for tab actions" = "点按以聚焦此页面；右键显示标签页操作";
+"Close tab" = "关闭标签页";
+"Asking a question" = "正在提问";
+"%@ asks" = "%@ 提问";
+"Open Link in New Tab and Go to It" = "在新标签页中打开链接并前往";
+"Open Link in New Tab" = "在新标签页中打开链接";
+"Search with %@" = "用 %@ 搜索";
+"Already a bookmark" = "已在书签中";
+"It's back" = "已恢复";
+"Everything is back" = "全部已恢复";
+"The keychain refused it" = "钥匙串拒绝了它";
+"Couldn't find the sign-in fields anymore" = "找不到登录输入框了";
+"Password copied" = "密码已拷贝";
+"Signed out of everything" = "已退出所有登录";
+"Cache cleared" = "缓存已清除";
+"History cleared" = "历史记录已清除";
+"Camera, microphone, location and notification choices forgotten" = "已忘记摄像头、麦克风、位置和通知的选择";
+"Address copied" = "地址已拷贝";
+"Link copied" = "链接已拷贝";
+"“Let a script drive Search” was turned on outside Settings, and stays off" = "“让脚本驱动 Search”是在设置之外打开的，仍保持关闭";
+"Ads and trackers blocked" = "已拦截广告和跟踪器";
+"Blocking off — reload to see the difference" = "拦截已关闭 — 重新加载即可看到区别";
+"Scripts can drive Search — see ./bench" = "脚本可以驱动 Search — 参见 ./bench";
+"The bench is closed" = "测试接口已关闭";
+"Passkeys offered again — reload the page" = "已恢复提供通行密钥 — 重新加载页面";
+"Sites will ask for a password instead" = "网站将改为要求输入密码";
+"Autocorrect on" = "自动更正已打开";
+"Autocorrect off" = "自动更正已关闭";
+"A tab that keeps nothing" = "一个不保留任何内容的标签页";
+"Nothing is playing here" = "这里没有正在播放的内容";
+"Hidden on this page — ⌘Z puts it back" = "已在此页面隐藏 — 按 ⌘Z 可恢复";
+"Hidden — ⌘Z puts it back" = "已隐藏 — 按 ⌘Z 可恢复";
+"Nothing to read on this page" = "此页面没有可阅读的内容";
+"Download finished" = "下载完成";
+"Download failed" = "下载失败";
+"Downloading %@" = "正在下载 %@";
+"Saved %@" = "已存储 %@";
+"%@ is back" = "%@ 已恢复";
+"Moved to %@" = "已移到 %@";
+"Couldn't hide that — %@" = "无法隐藏该项 — %@";
+"Kept for %@" = "已为 %@ 保存";
+"Never for %@" = "不再询问 %@";
+"Password updated for %@" = "已更新 %@ 的密码";
+"Password saved for %@" = "已存储 %@ 的密码";
+"copy the password for %@" = "拷贝 %@ 的密码";
+"Nothing new in %@" = "%@ 中没有新内容";
+"%lld passwords from %@" = "%lld 个密码来自 %@";
+"%@ didn't give up its keychain key" = "%@ 未提供其钥匙串密钥";
+"%@ has a primary password — export your passwords from it (Settings › Passwords › ⋯ › Export) and bring in the CSV file" = "%@ 设置了主密码 — 请从其中导出密码（设置 › 密码 › ⋯ › 导出），再导入该 CSV 文件";
+"Nothing readable in %@" = "%@ 中没有可读取的内容";
+"Couldn't read all of %@'s bookmarks: what came from it before was kept" = "无法完整读取 %@ 的书签：之前从它导入的内容已保留";
+"The bookmarks from %@ were all here already" = "%@ 的书签这里都已经有了";
+"%lld bookmarks from %@" = "%lld 个书签来自 %@";
+"%lld new bookmarks from %@, %lld already here" = "%lld 个新书签来自 %@，%lld 个已存在";
+"Bring In" = "导入";
+"A file another browser exported: bookmarks (.html), passwords (.csv), or Safari's File › Export Browsing Data (.zip)." = "其他浏览器导出的文件：书签（.html）、密码（.csv），或 Safari 的“文件”›“导出浏览数据”（.zip）。";
+"Merging bookmarks…" = "正在合并书签…";
+"Adding history…" = "正在添加历史记录…";
+"Open “%@”?" = "要打开“%@”吗？";
+"%@ wants to open %@." = "%@ 想要打开 %@。";
+"Move Tab?" = "要移动标签页吗？";
+"This page has unsaved form entries. It will reopen in “%@” with that Space’s sign-ins, so the entries may be lost." = "此页面有未存储的表单内容。它会在“%@”中用该空间的登录状态重新打开，因此这些内容可能会丢失。";
+"Move" = "移动";
+"No connection." = "没有网络连接。";
+"The site took too long to answer." = "网站响应时间过长。";
+"The site refused the connection." = "网站拒绝了连接。";
+"The connection isn't secure." = "连接不安全。";
+"The page didn't load." = "页面未能载入。";
+
+/* g9-spaces.strings */
+"Rename “%@”…" = "重命名“%@”…";
+"Downloads to “%@”…" = "下载到“%@”…";
+"Downloads Folder…" = "下载文件夹…";
+"Downloads to the Folder in Settings" = "下载到设置中的文件夹";
+"Delete “%@”…" = "删除“%@”…";
+"Delete “%@”?" = "删除“%@”？";
+"Its tabs close, and its cookies and sign-ins are erased from this Mac. History and bookmarks stay." = "其标签页会关闭，Cookie 和登录信息会从这台 Mac 上抹除。历史记录和书签保留。";
+"Move Left" = "左移";
+"Move Right" = "右移";
+"Icon" = "图标";
+"New Space" = "新建空间";
+"Its own tabs. Signed in where your other spaces are, unless it starts afresh." = "拥有自己的标签页。除非重新开始，否则与其他空间共享登录状态。";
+"Start signed out, with its own cookies" = "从登出状态开始，使用自己的 Cookie";
+"Use for This Space" = "用于此空间";
+"Downloads in this space go here. Cancel keeps the folder it has." = "此空间的下载会存到这里。取消则保留当前文件夹。";
+"Rename Space" = "重命名空间";
+"%@" = "%@";
+"%@ — ⌃1–⌃9, or two fingers %@ over the tabs, to switch" = "%@ —— ⌃1–⌃9，或在标签页上双指%@切换";
+"sideways" = "左右滑动";
+"up or down" = "上下滑动";
+"Work" = "工作";
+"Office" = "办公";
+"Desktop" = "桌面";
+"Laptop" = "笔记本";
+"Code" = "代码";
+"Terminal" = "终端";
+"Thinking" = "思考";
+"Ideas" = "灵感";
+"Games" = "游戏";
+"Leisure" = "休闲";
+"Café" = "咖啡";
+"Music" = "音乐";
+"Film" = "影视";
+"Art" = "艺术";
+"Photos" = "照片";
+"Home" = "家庭";
+"Reading" = "阅读";
+"Studies" = "学习";
+"Shopping" = "购物";
+"Travel" = "旅行";
+"Sport" = "运动";
+"Nature" = "自然";
+"Personal" = "个人";
+"Signed in wherever your other spaces are." = "与其他空间共享登录状态。";
+"Its own cookies and sign-ins, starting from none." = "使用自己的 Cookie 和登录信息，从零开始。";
+"Signed in" = "沿用登录";
+"Signed out" = "独立登录";
+"Connection is not secure" = "连接不安全";
+"This site's certificate isn't trusted by this Mac. Someone could be reading what you send." = "这台 Mac 不信任此网站的证书。你发送的内容可能被人读取。";
+"Parts of this page are not secure" = "此页面的部分内容不安全";
+"The page came privately, but some of what it shows was fetched over plain http, where anyone on the network could read or change it." = "页面本身是私密传输的，但它显示的部分内容通过明文 http 获取，网络上的任何人都可能读取或篡改。";
+"Connection is secure" = "连接安全";
+"Your information (for example, passwords or credit card numbers) is private when it is sent to this site." = "你的信息（例如密码或信用卡号）在发送到此网站时是私密的。";
+"Don't enter passwords or credit card numbers here: anything sent to this site can be read on the way." = "不要在此输入密码或信用卡号：发往此网站的任何内容都可能被中途读取。";
+"A word to type first, like yt" = "先输入一个词，例如 yt";
+"One word, with no spaces in it" = "只能是一个词，不能含空格";
+"%@ already goes to %@" = "%@ 已指向 %@";
+"An http or https address with %s once, where the words go" = "一个 http 或 https 地址，其中有一处 %s 放搜索词";
+"Stop" = "停止";
+"Stop %@" = "停止 %@";
+"The file changed while the download was stopped." = "下载暂停期间文件已被更改。";
+"The server doesn't let this download pause." = "服务器不允许此下载暂停。";
+"The download failed for an unknown reason." = "下载因未知原因失败。";
+"New tab" = "新标签页";
+"Zoom" = "缩放";
+"Actual Size   ⌘0" = "实际大小   ⌘0";
+"Play Sound by Itself" = "自行播放声音";
+"from the next page" = "从下一页起";
+"Don't Float Videos Here" = "不在此浮动视频";
+"Downloads (⇧⌘J)" = "下载 (⇧⌘J)";
+"Choose an icon" = "选择图标";
+"Its own tabs." = "拥有自己的标签页。";
+"New space" = "新建空间";
+"New space — choose its icon" = "新建空间 — 选择图标";
+"Close the tabs under the line. Pins and groups stay; ⇧⌘T brings them all back." = "关闭这条线以下的标签页。固定的标签页和分组都会保留；⇧⌘T 可全部恢复。";
+"Search %@" = "搜索 %@";
+"Search %@, press Tab" = "搜索 %@，按 Tab";
+"Searching %@" = "正在搜索 %@";
+"Tab" = "标签页";

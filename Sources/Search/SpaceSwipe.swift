@@ -236,7 +236,7 @@ struct NewSpaceCard: View {
                         .frame(width: 170)
                     Segmented(options: [(true, "Signed in"), (false, "Signed out")], selection: $shared)
                         .fixedSize()
-                        .help(saying)
+                        .help(saying.said)
                     Pill("Cancel") { cancel() }
                     Pill("Create", filled: true) { create() }
                 }
@@ -258,7 +258,7 @@ struct NewSpaceCard: View {
                     // some want a clean slate.
                     VStack(spacing: 6) {
                         Segmented(options: [(true, "Signed in"), (false, "Signed out")], selection: $shared, wide: true)
-                        Text(saying)
+                        Text(saying.said)
                             .font(.system(size: 11))
                             .foregroundStyle(Palette.muted)
                             .multilineTextAlignment(.center)

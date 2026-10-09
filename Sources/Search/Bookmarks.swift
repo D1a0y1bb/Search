@@ -504,7 +504,7 @@ final class Bookmarks: ObservableObject {
     /// A folder of your own, its name asked for as a rename's is: inside
     /// `parent`, or at the top level for nil. An empty name makes none.
     func askNewFolder(in parent: Bookmark.ID?, made: @escaping (Bookmark.ID) -> Void = { _ in }) {
-        Ask.name("New Folder", placeholder: "Folder name", confirm: "Make") { name in
+        Ask.name("New Folder".saidNow, placeholder: "Folder name".saidNow, confirm: "Make".saidNow) { name in
             made(self.insert(.folder(name, []), into: parent).id)
         }
     }
@@ -515,11 +515,11 @@ final class Bookmarks: ObservableObject {
         guard node.isFolder, let kids = node.children, !kids.isEmpty else { return remove(node.id) }
         let count = Bookmarks.count(kids)
         let detail = switch count {
-        case 0: "The empty folders in it go too."
-        case 1: "The bookmark in it goes too."
-        default: "The \(count) bookmarks in it go too."
+        case 0: "The empty folders in it go too.".saidNow
+        case 1: "The bookmark in it goes too.".saidNow
+        default: String.said("The %lld bookmarks in it go too.", count)
         }
-        Ask.sure("Remove \u{201C}\(node.title)\u{201D}?", detail: detail, confirm: "Remove") {
+        Ask.sure(String.said("Remove \u{201C}%@\u{201D}?", node.title), detail: detail, confirm: "Remove".saidNow) {
             self.remove(node.id)
         }
     }
@@ -699,7 +699,7 @@ struct BookmarkOutline: View {
     /// folder brought in from another browser is called after it. The name
     /// it has arrives in the field; an empty one changes nothing.
     private func rename(_ node: Bookmark) {
-        Ask.name(node.isFolder ? "Rename Folder" : "Rename Bookmark", placeholder: node.title, initial: node.title, confirm: "Rename") {
+        Ask.name(node.isFolder ? "Rename Folder".saidNow : "Rename Bookmark".saidNow, placeholder: node.title, initial: node.title, confirm: "Rename".saidNow) {
             bookmarks.update(node.id, title: $0, url: nil)
         }
     }
@@ -1031,7 +1031,7 @@ struct BookmarkCard: View {
             }
             Divider()
             Button("New Folder\u{2026}") {
-                Ask.name("New Folder", placeholder: "Name", confirm: "Create") { name in
+                Ask.name("New Folder".saidNow, placeholder: "Name".saidNow, confirm: "Create".saidNow) { name in
                     let made = bookmarks.insert(.folder(name, []), into: nil)
                     bookmarks.move(id, into: made.id)
                 }
@@ -1041,7 +1041,7 @@ struct BookmarkCard: View {
                 Image(systemName: "folder")
                     .font(.system(size: 10.5))
                     .foregroundStyle(Palette.muted)
-                Text(here?.title ?? "Top Level")
+                Text(here?.title ?? "Top Level".saidNow)
                     .font(.system(size: 12.5))
                     .foregroundStyle(Palette.ink)
                     .lineLimit(1)
@@ -1062,7 +1062,7 @@ struct BookmarkCard: View {
 
     private func line(_ name: String, @ViewBuilder _ control: () -> some View) -> some View {
         HStack(spacing: 10) {
-            Text(name)
+            Text(name.said)
                 .font(.system(size: 11.5))
                 .foregroundStyle(Palette.muted)
                 .frame(width: 42, alignment: .leading)
@@ -1180,7 +1180,7 @@ struct BookmarksDropdown: View {
                 } else {
                     Spacer().frame(width: 14)
                 }
-                Text(title).font(.system(size: 12.5)).foregroundStyle(Palette.ink)
+                Text(title.said).font(.system(size: 12.5)).foregroundStyle(Palette.ink)
                 Spacer(minLength: 0)
             }
             .padding(.horizontal, 10)
@@ -1358,7 +1358,7 @@ struct BookmarksPanel: View {
 
         /// The folders it is in, then the site.
         private var whereabouts: String {
-            let folders = path.isEmpty ? "Top level" : path.joined(separator: " \u{203A} ")
+            let folders = path.isEmpty ? "Top level".saidNow : path.joined(separator: " \u{203A} ")
             guard let host = node.host else { return folders }
             return folders + "  \u{00B7}  " + host
         }
@@ -1420,7 +1420,7 @@ final class BookmarkMenu: NSObject, NSMenuDelegate {
         wrap()
     }
 
-    private var menu: NSMenu? { NSApp.mainMenu?.items.first(where: { $0.title == "Bookmarks" })?.submenu }
+    private var menu: NSMenu? { NSMenu.barItem("Bookmarks")?.submenu }
 
     /// Looks, while the menu is open, after each turn of the run loop.
     private var looking: CFRunLoopObserver?
@@ -1485,7 +1485,7 @@ final class BookmarkMenu: NSObject, NSMenuDelegate {
         let menu = NSMenu(title: folder.title)
         let made = items(for: folder.children ?? [])
         if made.isEmpty {
-            let empty = NSMenuItem(title: "Empty", action: nil, keyEquivalent: "")
+            let empty = NSMenuItem(title: "Empty".saidNow, action: nil, keyEquivalent: "")
             empty.isEnabled = false
             menu.addItem(empty)
         }
@@ -1528,7 +1528,7 @@ final class BookmarkMenu: NSObject, NSMenuDelegate {
         menu.removeAllItems()
         let made = items(for: kids)
         if made.isEmpty {
-            let empty = NSMenuItem(title: "Empty", action: nil, keyEquivalent: "")
+            let empty = NSMenuItem(title: "Empty".saidNow, action: nil, keyEquivalent: "")
             empty.isEnabled = false
             menu.addItem(empty)
         }

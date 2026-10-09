@@ -239,7 +239,7 @@ struct WhatsNewCard: View {
     private var fresh: [WhatsNew.Toggle] { WhatsNew.toggles.filter { $0.since == release.version } }
 
     var body: some View {
-        Plate("New in Search \(release.version)", width: 460, close: close) {
+        Plate(String.said("New in Search %@", release.version), width: 460, close: close) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
                     rows(fresh)
@@ -277,10 +277,10 @@ struct WhatsNewCard: View {
                 if index > 0 { Rule() }
                 HStack(alignment: .center, spacing: 16) {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(toggle.title)
+                        Text(toggle.title.said)
                             .font(.system(size: 13))
                             .foregroundStyle(Palette.ink)
-                        Text(toggle.detail)
+                        Text(toggle.detail.said)
                             .font(.system(size: 11.5))
                             .foregroundStyle(Palette.muted)
                             .fixedSize(horizontal: false, vertical: true)
@@ -321,12 +321,12 @@ struct ReleaseNotesPanel: View {
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundStyle(Palette.ink)
                 if !note.date.isEmpty {
-                    Text(note.date)
+                    Text(note.date.said)
                         .font(.system(size: 12))
                         .foregroundStyle(Palette.faint)
                 }
             }
-            Text(note.headline)
+            Text(note.headline.said)
                 .font(.system(size: 13))
                 .foregroundStyle(Palette.ink)
                 .fixedSize(horizontal: false, vertical: true)
@@ -340,13 +340,13 @@ struct ReleaseNotesPanel: View {
     private func list(_ title: String, _ lines: [String]) -> some View {
         if !lines.isEmpty {
             VStack(alignment: .leading, spacing: 5) {
-                Text(title)
+                Text(title.said)
                     .font(.system(size: 11.5, weight: .medium))
                     .foregroundStyle(Palette.muted)
                 ForEach(lines, id: \.self) { line in
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text("•").foregroundStyle(Palette.faint)
-                        Text(line)
+                        Text(line.said)
                             .foregroundStyle(Palette.ink)
                             .fixedSize(horizontal: false, vertical: true)
                     }

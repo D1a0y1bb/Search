@@ -159,18 +159,18 @@ final class Updater: ObservableObject {
     func checkByHand() {
         switch stage {
         case .ready(let next):
-            say?("Search \(next.version) is ready — relaunch to use it")
+            say?(String.said("Search %@ is ready — relaunch to use it", next.version))
             return
         case .fetching(let next):
-            say?("Search \(next.version) is downloading…")
+            say?(String.said("Search %@ is downloading…", next.version))
             return
         default: break
         }
         guard !checking else { return }
-        say?("Checking for updates…")
+        say?(String.said("Checking for updates…"))
         check { [weak self] found in
             guard let self else { return }
-            if found == nil { self.say?("Search is up to date"); return }
+            if found == nil { self.say?(String.said("Search is up to date")); return }
             // The waiting branch or `take` announces the next state afterward.
         }
     }
@@ -201,7 +201,7 @@ final class Updater: ObservableObject {
             case .waiting(let known) where known == found: break
             case .none, .offered, .waiting:
                 stage = .waiting(found)
-                say?("Search \(found.version) is out — choose Install Update in the Search menu")
+                say?(String.said("Search %@ is out — choose Install Update in the Search menu", found.version))
             }
         }
     }
@@ -216,7 +216,7 @@ final class Updater: ObservableObject {
     func openDisk() {
         guard case .offered(let release) = stage, !fetchingDisk else { return }
         fetchingDisk = true
-        say?("Downloading Search \(release.version)…")
+        say?(String.said("Downloading Search %@…", release.version))
         Task.detached(priority: .utility) {
             let result: Result<URL, Error>
             do { result = .success(try await Swap.disk(release)) } catch { result = .failure(error) }
@@ -228,7 +228,7 @@ final class Updater: ObservableObject {
                     if Store.testing { Updater.diskVerdict = "verified" } else { NSWorkspace.shared.open(dmg) }
                 case .failure(let error):
                     Updater.diskVerdict = "refused: \(error)"
-                    say?("That download didn't check out — get Search from officecommun.com/search")
+                    say?(String.said("That download didn't check out — get Search from officecommun.com/search"))
                 }
             }
         }
@@ -251,7 +251,7 @@ final class Updater: ObservableObject {
         case .none, .offered, .waiting: break
         }
         stage = .fetching(release)
-        say?("Search \(release.version) is downloading…")
+        say?(String.said("Search %@ is downloading…", release.version))
         Task.detached(priority: .utility) {
             let worked: Bool
             do {
@@ -268,8 +268,8 @@ final class Updater: ObservableObject {
         guard case .fetching(let fetching) = stage, fetching == release else { return }
         stage = worked ? .ready(release) : .offered(release)
         say?(worked
-            ? "Search \(release.version) is ready — it's there the next time you open it"
-            : "Search \(release.version) is out — choose Download Update in the Search menu")
+            ? String.said("Search %@ is ready — it's there the next time you open it", release.version)
+            : String.said("Search %@ is out — choose Download Update in the Search menu", release.version))
     }
 
     /// Quit, and come back as the new one. A shell waits for this process

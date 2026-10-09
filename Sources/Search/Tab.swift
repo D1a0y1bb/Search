@@ -1473,13 +1473,13 @@ final class PageView: WKWebView {
         if let index = menu.items.firstIndex(where: { $0.identifier?.rawValue == "WKMenuItemIdentifierOpenLinkInNewWindow" }) {
             let item = menu.items[index]
             if let front = item.copy() as? NSMenuItem {
-                front.title = "Open Link in New Tab and Go to It"
+                front.title = "Open Link in New Tab and Go to It".saidNow
                 front.keyEquivalentModifierMask = .option
                 front.isAlternate = true
                 menu.insertItem(front, at: index + 1)
             }
             openLink = (item.target, item.action)
-            item.title = "Open Link in New Tab"
+            item.title = "Open Link in New Tab".saidNow
             item.keyEquivalentModifierMask = []
             item.target = self
             item.action = #selector(openLinkBehind(_:))
@@ -1489,7 +1489,10 @@ final class PageView: WKWebView {
         if Store.testing, let title = PageView.picking {
             PageView.picking = nil
             RunLoop.main.perform(inModes: [.eventTracking, .default]) {
-                if let index = menu.items.firstIndex(where: { $0.title == title }) { menu.performActionForItem(at: index) }
+                // The bench names the item in English; a title the language
+                // files have replaced is found by the sentence it was made from.
+                let matches = { (item: NSMenuItem) in item.title == title || item.title == title.saidNow }
+                if let index = menu.items.firstIndex(where: matches) { menu.performActionForItem(at: index) }
                 menu.cancelTracking()
             }
         }
@@ -1500,7 +1503,7 @@ final class PageView: WKWebView {
             evaluateJavaScript(PageView.selected, in: nil, in: .defaultClient) { [weak self] result in
                 self?.selection = (try? result.get()) as? String ?? ""
             }
-            item.title = "Search with \(name)"
+            item.title = String.said("Search with %@", name)
             item.target = self
             item.action = #selector(searchSelection(_:))
         }

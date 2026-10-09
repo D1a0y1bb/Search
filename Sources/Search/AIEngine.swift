@@ -153,7 +153,7 @@ final class AIEngine: ObservableObject {
                     try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: engine.path)
                     guard AIEngine.trusted(engine) else {
                         try? FileManager.default.removeItem(at: place)
-                        throw AIDownload.Failure("The engine's signature doesn't hold up.")
+                        throw AIDownload.Failure("The engine's signature doesn't hold up.".saidNow)
                     }
                     // Older ones go.
                     for old in (try? FileManager.default.contentsOfDirectory(atPath: AIEngine.engines.path)) ?? []
@@ -295,7 +295,7 @@ final class AIEngine: ObservableObject {
 
     private func launch() async throws {
         if pid == 0 {
-            guard let engine = engineFile else { throw Stopped(why: "The engine isn't installed.") }
+            guard let engine = engineFile else { throw Stopped(why: "The engine isn't installed.".saidNow) }
             let modelURL = AIEngine.modelFile
             // Checked off the main thread: the model is a gigabyte.
             let checked: (Bool, Int32?) = await Task.detached(priority: .userInitiated) {
@@ -303,10 +303,10 @@ final class AIEngine: ObservableObject {
             }.value
             guard checked.0 else {
                 if let fd = checked.1 { close(fd) }
-                throw Stopped(why: "The engine's signature doesn't hold up. Remove it in Settings › AI and download it again.")
+                throw Stopped(why: "The engine's signature doesn't hold up. Remove it in Settings › AI and download it again.".saidNow)
             }
             guard let modelFD = checked.1 else {
-                throw Stopped(why: "The model isn't the one Search expects. Remove it in Settings › AI and download it again.")
+                throw Stopped(why: "The model isn't the one Search expects. Remove it in Settings › AI and download it again.".saidNow)
             }
             defer { close(modelFD) }
             try spawn(engine, modelFD: modelFD)
@@ -315,7 +315,7 @@ final class AIEngine: ObservableObject {
         let run = generation
         DispatchQueue.main.asyncAfter(deadline: .now() + 120) { [weak self] in
             guard let self, self.generation == run, self.pid != 0, !self.ready else { return }
-            self.ended("The engine didn't start.")
+            self.ended("The engine didn't start.".saidNow)
         }
         try await withCheckedThrowingContinuation { (waiter: CheckedContinuation<Void, Error>) in
             if ready { waiter.resume() } else { readyWaiters.append(waiter) }
@@ -351,13 +351,13 @@ final class AIEngine: ObservableObject {
         let status = posix_spawn(&child, engine.path, &actions, &attributes, &argv, &environment)
         toEngine.fileHandleForReading.closeFile()
         fromEngine.fileHandleForWriting.closeFile()
-        guard status == 0 else { throw Stopped(why: "The engine couldn't be started.") }
+        guard status == 0 else { throw Stopped(why: "The engine couldn't be started.".saidNow) }
         // The process as the system loaded it, before it runs a thing.
         guard AIEngine.trustedRunning(child) else {
             kill(child, SIGKILL)
             var reaped: Int32 = 0
             waitpid(child, &reaped, 0)
-            throw Stopped(why: "The engine's signature doesn't hold up. Remove it in Settings › AI and download it again.")
+            throw Stopped(why: "The engine's signature doesn't hold up. Remove it in Settings › AI and download it again.".saidNow)
         }
         kill(child, SIGCONT)
         pid = child
@@ -408,7 +408,7 @@ final class AIEngine: ObservableObject {
 
     private func heard(_ data: Data, run: Int) {
         guard run == generation else { return }
-        guard !data.isEmpty else { return ended("The engine stopped.") }
+        guard !data.isEmpty else { return ended("The engine stopped.".saidNow) }
         carry.append(data)
         while let end = carry.firstIndex(of: 0x0A) {
             let line = carry[carry.startIndex..<end]
@@ -516,12 +516,13 @@ enum AIDownload {
 
     @MainActor
     static func fetch(_ url: URL, size: Int64, sha256: String, progress: @escaping @MainActor (Double) -> Void) async throws -> URL {
-        guard url.scheme?.lowercased() == "https" else { throw Failure("Not a secure address.") }
+        guard url.scheme?.lowercased() == "https" else { throw Failure("Not a secure address.".saidNow) }
         let folder = Store.folder.appendingPathComponent("AI/Downloads", isDirectory: true)
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         if let free = try? folder.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey]).volumeAvailableCapacityForImportantUsage,
            free < size + size / 10 {
-            throw Failure("There isn't enough free space on this Mac (\(ByteCountFormatter.string(fromByteCount: size, countStyle: .file)) needed).")
+            throw Failure(String.said("There isn't enough free space on this Mac (%@ needed).",
+                                      ByteCountFormatter.string(fromByteCount: size, countStyle: .file)))
         }
         let watcher = Watcher(progress: progress, size: size)
         let configuration = URLSessionConfiguration.ephemeral
@@ -532,7 +533,7 @@ enum AIDownload {
         let (temporary, response) = try await session.download(from: url, delegate: watcher)
         guard (response as? HTTPURLResponse).map({ (200..<300).contains($0.statusCode) }) ?? false else {
             try? FileManager.default.removeItem(at: temporary)
-            throw Failure("The download was refused.")
+            throw Failure("The download was refused.".saidNow)
         }
         let file = folder.appendingPathComponent(UUID().uuidString)
         try FileManager.default.moveItem(at: temporary, to: file)
@@ -549,7 +550,7 @@ enum AIDownload {
         }.value
         guard matches else {
             try? FileManager.default.removeItem(at: file)
-            throw Failure("What arrived isn't what was expected, so it was deleted.")
+            throw Failure("What arrived isn't what was expected, so it was deleted.".saidNow)
         }
         return file
     }

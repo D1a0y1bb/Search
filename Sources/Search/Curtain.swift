@@ -20,6 +20,15 @@ struct Veil: Codable, Identifiable, Equatable {
     var date: Date
 
     var id: String { selector }
+
+    /// The size and the corner, as the panel reads them. The page sends the two
+    /// words a corner is named with — "top left" — after the size it measured;
+    /// the size is the page's own arithmetic and needs no words at all.
+    var saidNote: String? {
+        guard let note, !note.isEmpty else { return nil }
+        guard let gap = note.range(of: " · ") else { return note }
+        return String(note[..<gap.lowerBound]) + " · " + String(note[gap.upperBound...]).saidNow
+    }
 }
 
 @MainActor

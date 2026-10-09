@@ -136,7 +136,7 @@ extension Browser {
         }
         ask(from: webView, show: {
             let alert = Dialogs.alert(from: frame, saying: message)
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: "OK".saidNow)
             Dialogs.show(alert, over: webView) { _ in completionHandler() }
         }, drop: completionHandler)
     }
@@ -152,8 +152,8 @@ extension Browser {
         }
         ask(from: webView, show: {
             let alert = Dialogs.alert(from: frame, saying: message)
-            alert.addButton(withTitle: "OK")
-            alert.addButton(withTitle: "Cancel")
+            alert.addButton(withTitle: "OK".saidNow)
+            alert.addButton(withTitle: "Cancel".saidNow)
             Dialogs.show(alert, over: webView) { answer in
                 completionHandler(answer == .alertFirstButtonReturn)
             }
@@ -174,8 +174,8 @@ extension Browser {
         }
         ask(from: webView, show: {
             let alert = Dialogs.alert(from: frame, saying: prompt)
-            alert.addButton(withTitle: "OK")
-            alert.addButton(withTitle: "Cancel")
+            alert.addButton(withTitle: "OK".saidNow)
+            alert.addButton(withTitle: "Cancel".saidNow)
             let field = NSTextField(string: defaultText ?? "")
             field.frame = NSRect(x: 0, y: 0, width: 260, height: 24)
             alert.accessoryView = field
@@ -211,7 +211,7 @@ extension Browser {
             panel.resolvesAliases = true
             // The site the file goes to, named.
             let host = frame.securityOrigin.host
-            panel.message = host.isEmpty ? "Choose a file for this page" : "Choose a file for \(host)"
+            panel.message = host.isEmpty ? String.said("Choose a file for this page") : String.said("Choose a file for %@", host)
             let finish: (NSApplication.ModalResponse) -> Void = { answer in
                 completionHandler(answer == .OK ? panel.urls : nil)
             }
@@ -279,11 +279,11 @@ extension Browser {
         // Over its own tab only, as a page's own questions are (see ask).
         ask(from: webView, show: {
             let alert = NSAlert()
-            alert.messageText = "\(host) can't prove who it is"
-            alert.informativeText = "Its certificate isn't trusted by this Mac. Someone could be reading what you send. Continue only if you know why it looks like this."
+            alert.messageText = String.said("%@ can't prove who it is", host)
+            alert.informativeText = "Its certificate isn't trusted by this Mac. Someone could be reading what you send. Continue only if you know why it looks like this.".saidNow
             alert.alertStyle = .warning
-            alert.addButton(withTitle: "Go Back")
-            alert.addButton(withTitle: "Continue Anyway")
+            alert.addButton(withTitle: "Go Back".saidNow)
+            alert.addButton(withTitle: "Continue Anyway".saidNow)
             Dialogs.show(alert, over: webView) { answer in
                 guard answer == .alertSecondButtonReturn else {
                     completionHandler(.cancelAuthenticationChallenge, nil)
@@ -321,19 +321,19 @@ extension Browser {
     ) {
         let space = challenge.protectionSpace
         let alert = NSAlert()
-        alert.messageText = "\(space.host) asks you to sign in"
-        alert.informativeText = space.realm.map { "“\($0)”" } ?? "The site wants a name and a password."
+        alert.messageText = String.said("%@ asks you to sign in", space.host)
+        alert.informativeText = space.realm.map { "“\($0)”" } ?? "The site wants a name and a password.".saidNow
         if challenge.previousFailureCount > 0 {
-            alert.informativeText += "\nThat wasn't accepted — try again."
+            alert.informativeText += "\nThat wasn't accepted — try again.".saidNow
         }
-        alert.addButton(withTitle: "Sign In")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "Sign In".saidNow)
+        alert.addButton(withTitle: "Cancel".saidNow)
 
         let box = NSView(frame: NSRect(x: 0, y: 0, width: 260, height: 56))
         let name = NSTextField(frame: NSRect(x: 0, y: 32, width: 260, height: 24))
-        name.placeholderString = "Name"
+        name.placeholderString = "Name".saidNow
         let pass = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 260, height: 24))
-        pass.placeholderString = "Password"
+        pass.placeholderString = "Password".saidNow
         name.nextKeyView = pass
         box.addSubview(name)
         box.addSubview(pass)
@@ -380,7 +380,7 @@ enum Dialogs {
         // The site's name as the title, so a page can't dress its message up
         // as one from the system or from the browser.
         let host = frame.securityOrigin.host
-        alert.messageText = host.isEmpty ? "This page says" : host
+        alert.messageText = host.isEmpty ? "This page says".saidNow : host
         alert.informativeText = message
         alert.alertStyle = .informational
         return alert

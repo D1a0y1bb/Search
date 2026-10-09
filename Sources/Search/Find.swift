@@ -34,13 +34,13 @@ struct FindBar: View {
 
             // "3 of 17", as the page counted it.
             if let status = browser.findStatus {
-                Text(status)
+                Text(status.said)
                     .font(.system(size: 10, weight: .medium))
                     .foregroundStyle(browser.missed ? Color.red.opacity(0.8) : Palette.muted)
                     .monospacedDigit()
                     .lineLimit(1)
                     .fixedSize()
-                    .accessibilityLabel(status)
+                    .accessibilityLabel(status.said)
                     .accessibilityIdentifier("Find result status")
             }
 
@@ -123,8 +123,8 @@ struct FindBar: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(label)
-        .accessibilityHint(help)
-        .help(help)
+        .accessibilityLabel(label.said)
+        .accessibilityHint(help.said)
+        .help(help.said)
     }
 }

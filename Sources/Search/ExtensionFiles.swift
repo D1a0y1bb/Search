@@ -29,11 +29,16 @@ enum ExtensionFiles {
 
     private static func replacementError(_ code: Int32, staged: URL, target: URL) -> NSError {
         let posix = NSError(domain: NSPOSIXErrorDomain, code: Int(code))
+        // Looked up by hand rather than through Tongue's `.saidNow`: this file
+        // is also built on its own, without it (see run-extension-files-tests.sh).
+        let why = String(format: NSLocalizedString("Couldn't replace extension at %@: %@",
+                                                  value: "Couldn't replace extension at %@: %@", comment: ""),
+                         target.path, posix.localizedDescription)
         return NSError(
             domain: NSPOSIXErrorDomain,
             code: Int(code),
             userInfo: [
-                NSLocalizedDescriptionKey: "Couldn't replace extension at \(target.path): \(posix.localizedDescription)",
+                NSLocalizedDescriptionKey: why,
                 NSFilePathErrorKey: target.path,
                 "ExtensionStagedPath": staged.path,
             ]

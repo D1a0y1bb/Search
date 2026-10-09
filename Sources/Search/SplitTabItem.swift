@@ -112,7 +112,7 @@ private struct SplitTabHalf: View {
     @Binding var hovered: Tab.ID?
 
     private var hovering: Bool { hovered == tab.id }
-    private var title: String { tab.label.isEmpty ? "New Tab" : tab.label }
+    private var title: String { tab.label.isEmpty ? "New Tab".saidNow : tab.label }
     private var playing: Bool { !tab.loading && (tab.noisy || tab.muted) }
     private var editing: Bool { browser.editingTab == tab.id }
 

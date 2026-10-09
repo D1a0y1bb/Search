@@ -61,7 +61,7 @@ struct HiddenPanel: View {
                         .foregroundStyle(Palette.ink)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                    if let note = veil.note, !note.isEmpty {
+                    if let note = veil.saidNote {
                         Text(note)
                             .font(.system(size: 11.5))
                             .foregroundStyle(Palette.muted)

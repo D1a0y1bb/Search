@@ -325,18 +325,18 @@ struct DownloadsPanel: View {
 
         private var bytes: String {
             let received = ByteCountFormatter.string(fromByteCount: entry.completedBytes, countStyle: .file)
-            guard entry.totalBytes > 0 else { return received + " downloaded" }
+            guard entry.totalBytes > 0 else { return String.said("%@ downloaded", received) }
             let total = ByteCountFormatter.string(fromByteCount: entry.totalBytes, countStyle: .file)
-            return "\(received) of \(total)"
+            return String.said("%@ of %@", received, total)
         }
 
         private var stateLabel: String {
             switch entry.state {
-            case .downloading: return "Downloading"
-            case .pausing: return "Pausing…"
-            case .paused: return "Paused"
-            case .resuming: return "Resuming…"
-            case .failed: return "Failed"
+            case .downloading: return "Downloading".saidNow
+            case .pausing: return "Pausing…".saidNow
+            case .paused: return "Paused".saidNow
+            case .resuming: return "Resuming…".saidNow
+            case .failed: return "Failed".saidNow
             }
         }
 
@@ -381,7 +381,7 @@ struct DownloadsPanel: View {
                             .truncationMode(.middle)
                     }
                     if case .failed = entry.state {
-                        Text(entry.errorDescription ?? "The download failed.")
+                        Text((entry.errorDescription ?? "The download failed.").said)
                             .font(.system(size: 11.5))
                             .foregroundStyle(Palette.muted)
                             .fixedSize(horizontal: false, vertical: true)

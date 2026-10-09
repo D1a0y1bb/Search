@@ -214,7 +214,7 @@ private final class ImageMenuItem: NSMenuItem {
 
     init(_ title: String, act: @escaping () -> Void) {
         self.act = act
-        super.init(title: title, action: #selector(run), keyEquivalent: "")
+        super.init(title: title.saidNow, action: #selector(run), keyEquivalent: "")
         target = self
     }
 

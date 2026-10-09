@@ -126,6 +126,20 @@ else
 fi
 rm -rf "$ICONCAR" "$ICONDOC"
 
+# The language files. English is the source — it lives in the code and needs no
+# file — so each folder under Localization/ is one more language the app can
+# speak, matched by its name. A sentence no language file knows simply stays
+# the sentence in the code, which is why a language can land a page at a time.
+_localizations() {
+  echo "<string>en</string>"
+  for L in Localization/*.lproj; do
+    [ -d "$L" ] && echo "<string>$(basename "$L" .lproj)</string>"
+  done
+}
+for L in Localization/*.lproj; do
+  [ -d "$L" ] && cp -R "$L" "$APP/Contents/Resources/"
+done
+
 cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -139,6 +153,9 @@ cat > "$APP/Contents/Info.plist" <<PLIST
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
   <key>CFBundleVersion</key><string>$BUILD</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleLocalizations</key>
+  <array>$(_localizations)</array>
   $ICONNAME
   <key>LSMinimumSystemVersion</key><string>$MINIMUM</string>
   <key>LSApplicationCategoryType</key><string>public.app-category.productivity</string>

@@ -32,10 +32,11 @@ enum AIError: LocalizedError, Equatable {
 
     var errorDescription: String? {
         switch self {
-        case .noKey: return "No key is kept for this provider."
-        case .refusedHost: return "That address isn't the provider's."
-        case .http(let status, let said): return said.isEmpty ? "The provider answered \(status)." : "\(said) (\(status))"
-        case .unreadable: return "The provider's answer couldn't be read."
+        case .noKey: return "No key is kept for this provider.".saidNow
+        case .refusedHost: return "That address isn't the provider's.".saidNow
+        case .http(let status, let said):
+            return said.isEmpty ? String.said("The provider answered %lld.", status) : String.said("%@ (%lld)", said, status)
+        case .unreadable: return "The provider's answer couldn't be read.".saidNow
         case .unreachable(let why): return why
         }
     }
@@ -300,13 +301,13 @@ final class AIClient: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
 
     private static func reason(_ error: URLError, _ provider: AIProvider) -> String {
         switch error.code {
-        case .cannotConnectToHost where provider.isLocal: return "\(provider.name) isn't running on this Mac."
-        case .notConnectedToInternet: return "This Mac is offline."
-        case .timedOut: return "\(provider.name) took too long to answer."
+        case .cannotConnectToHost where provider.isLocal: return String.said("%@ isn't running on this Mac.", provider.name)
+        case .notConnectedToInternet: return "This Mac is offline.".saidNow
+        case .timedOut: return String.said("%@ took too long to answer.", provider.name)
         case .serverCertificateUntrusted, .serverCertificateHasBadDate, .serverCertificateNotYetValid,
              .serverCertificateHasUnknownRoot, .secureConnectionFailed:
-            return "The connection to \(provider.name) isn't secure."
-        default: return "\(provider.name) couldn't be reached."
+            return String.said("The connection to %@ isn't secure.", provider.name)
+        default: return String.said("%@ couldn't be reached.", provider.name)
         }
     }
 }

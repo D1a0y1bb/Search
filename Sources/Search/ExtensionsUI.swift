@@ -177,7 +177,7 @@ struct ExtensionsPage: View {
                 .menuStyle(.borderlessButton)
                 .menuIndicator(.hidden)
                 .fixedSize()
-                .help("More for \(item.name)")
+                .help("More for \(item.name)".said)
                 Switch(on: Binding(get: { item.enabled }, set: { extensions.setEnabled(item.id, $0) }))
             }
             .padding(.horizontal, 14)
@@ -189,12 +189,12 @@ struct ExtensionsPage: View {
 
         @ViewBuilder
         private func actions(_ context: WKWebExtensionContext?) -> some View {
-            Button(item.pinned == true ? "Unpin" : "Pin to Toolbar") {
+            Button(item.pinned == true ? "Unpin".said : "Pin to Toolbar".said) {
                 extensions.setPinned(item.id, !(item.pinned ?? false))
             }
             if context?.overrideNewTabPageURL != nil {
                 let on = Store.settings.object(forKey: "extensions.newtab.\(item.id)") as? Bool == true
-                Button(on ? "Stop Showing in New Tabs" : "Show in New Tabs") {
+                Button(on ? "Stop Showing in New Tabs".said : "Show in New Tabs".said) {
                     Store.settings.set(!on, forKey: "extensions.newtab.\(item.id)")
                     extensions.objectWillChange.send()
                 }
@@ -212,16 +212,18 @@ struct ExtensionsPage: View {
         /// Where it was loaded from, by the folder's name — the whole path
         /// is in the tooltip.
         private var folder: String {
-            item.source.map { "From “\(URL(fileURLWithPath: $0).lastPathComponent)”" } ?? "From a folder"
+            item.source.map { String.said("From “%@”", URL(fileURLWithPath: $0).lastPathComponent) } ?? "From a folder".saidNow
         }
 
         private func detail(_ context: WKWebExtensionContext?) -> String {
-            var parts = ["Version \(item.version)", item.fromStore ? "Chrome Web Store" : folder]
-            if item.enabled, context == nil { parts.append("couldn't start") }
+            var parts = [String.said("Version %@", item.version), item.fromStore ? "Chrome Web Store".saidNow : folder]
+            if item.enabled, context == nil { parts.append("couldn't start".saidNow) }
             if context?.overrideNewTabPageURL != nil, Store.settings.object(forKey: "extensions.newtab.\(item.id)") as? Bool == true {
-                parts.append("shows in new tabs")
+                parts.append("shows in new tabs".saidNow)
             }
-            if let errors = context?.errors, !errors.isEmpty { parts.append("\(errors.count) warning\(errors.count == 1 ? "" : "s")") }
+            if let errors = context?.errors, !errors.isEmpty {
+                parts.append(errors.count == 1 ? String.said("%lld warning", errors.count) : String.said("%lld warnings", errors.count))
+            }
             return parts.joined(separator: " · ")
         }
     }
@@ -252,7 +254,7 @@ struct StoreOffer: View {
                     Image(systemName: "puzzlepiece.extension")
                         .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(Palette.muted)
-                    Text(extensions.busy == id ? "Adding…" : "Add this extension to Search")
+                    Text(extensions.busy == id ? "Adding…".said : "Add this extension to Search".said)
                         .font(.system(size: 12.5))
                         .foregroundStyle(Palette.ink)
                     if extensions.busy == id {
